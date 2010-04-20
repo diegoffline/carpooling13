@@ -5,7 +5,10 @@ using System.Text;
 
 namespace CarpoolingModel
 {
-    public class Class1
+    public class Message
     {
+        private int id;
+        private string message;
+        private DateTime time;
     }
 }
