@@ -9,7 +9,7 @@ namespace CarpoolingModel
     {
         int id;
         DateTime start;
-        private LinkedList<Client> listClient;
+        private LinkedList<GroupMember> listClient;
         private LinkedList<Message> listMessage;
         private Resource resource;
         private Route route;
