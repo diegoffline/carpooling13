@@ -5,9 +5,9 @@ using System.Text;
 
 namespace CarpoolingModel
 {
-    public class Nation
+    public enum GroupType
     {
-        int id;
-        string name;
+        business = 0,
+        vacation = 1,
     }
 }

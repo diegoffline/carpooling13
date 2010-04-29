@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CarpoolingModel
 {
-    class City
+    public class City
     {
         int id;
         string name;
