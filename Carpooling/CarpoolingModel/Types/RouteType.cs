@@ -8,7 +8,7 @@ namespace CarpoolingModel
     public enum RouteType
     {
         /// <summary>
-        /// firm route for one client
+        /// firm group for one clientUsername
         /// </summary>
         firmRoute = 0,
         /// <summary>

@@ -1,101 +1,105 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="CarpoolingModel.Client">
-    <Position X="0.75" Y="0.5" Width="1.5" />
+    <Position X="0.75" Y="5" Width="1.5" />
+    <AssociationLine Name="listResource" Type="CarpoolingModel.Resource" FixedFromPoint="true">
+      <Path>
+        <Point X="1.438" Y="11.149" />
+        <Point X="1.438" Y="12.25" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAiABAAACAQACAgAAAEAAQABAAEAAAAAAAAAAAAIgA=</HashCode>
+      <HashCode>BAAigBkAACAQBAAgQQAkAAUgBCAEAAACAAAAAgAAKgA=</HashCode>
       <FileName>Client.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
-      <Field Name="resource" />
+      <Field Name="listResource" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CarpoolingModel.Group">
-    <Position X="5.75" Y="3" Width="1.5" />
-    <AssociationLine Name="listMessage" Type="CarpoolingModel.Message" FixedFromPoint="true" FixedToPoint="true">
+    <Position X="5.25" Y="5.25" Width="1.5" />
+    <AssociationLine Name="listMessage" Type="CarpoolingModel.Message" FixedFromPoint="true">
       <Path>
-        <Point X="6.344" Y="4.47" />
-        <Point X="6.344" Y="6.562" />
-        <Point X="4.5" Y="6.562" />
+        <Point X="6.25" Y="10.831" />
+        <Point X="6.25" Y="12.5" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="resource" Type="CarpoolingModel.Resource">
+    <AssociationLine Name="listResource" Type="CarpoolingModel.Resource" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.25" Y="9.541" />
+        <Point X="2.625" Y="9.541" />
+        <Point X="2.625" Y="12.438" />
+        <Point X="2.25" Y="12.438" />
+      </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.006" Y="-0.273" />
+        <Position X="0.297" Y="0.352" />
       </MemberNameLabel>
     </AssociationLine>
-    <AssociationLine Name="startRange" Type="CarpoolingModel.Range" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="type" Type="CarpoolingModel.GroupType" FixedFromPoint="true">
       <Path>
-        <Point X="6.188" Y="4.47" />
-        <Point X="6.188" Y="5.321" />
-        <Point X="4.5" Y="5.321" />
-      </Path>
-    </AssociationLine>
-    <AssociationLine Name="destinationRange" Type="CarpoolingModel.Range" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="5.75" Y="4.125" />
-        <Point X="4.125" Y="4.125" />
-        <Point X="4.125" Y="4.75" />
+        <Point X="5.25" Y="8.188" />
+        <Point X="4.5" Y="8.188" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAEABAAAAAAACAgAAAAAQBAAAAAAgEAAAAAAAAAAgA=</HashCode>
+      <HashCode>AAAGABQDAIAABAABAEAhAQRQIAAFAgEAAQIAAAAAAog=</HashCode>
       <FileName>Group.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="resource" />
       <Field Name="route" />
-      <Field Name="startRange" />
-      <Field Name="destinationRange" />
+      <Field Name="type" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Field Name="listClient" />
       <Field Name="listMessage" />
+      <Field Name="listResource" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CarpoolingModel.Range">
-    <Position X="3" Y="4.75" Width="1.5" />
+    <Position X="8.25" Y="13" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Range.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CarpoolingModel.Route">
-    <Position X="8.25" Y="2" Width="1.5" />
+    <Position X="8.25" Y="5" Width="1.5" />
     <AssociationLine Name="startingPoint" Type="CarpoolingModel.Place" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="9.75" Y="2.688" />
-        <Point X="10.125" Y="2.688" />
-        <Point X="10.125" Y="3.75" />
-        <Point X="10.75" Y="3.75" />
+        <Point X="9.75" Y="5.5" />
+        <Point X="10.75" Y="5.5" />
+        <Point X="10.75" Y="5.75" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.143" Y="-0.328" />
+        <Position X="-0.404" Y="0.199" />
       </MemberNameLabel>
     </AssociationLine>
     <AssociationLine Name="destination" Type="CarpoolingModel.Place" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="9.75" Y="2.438" />
-        <Point X="11.938" Y="2.438" />
-        <Point X="11.938" Y="3.75" />
+        <Point X="9.75" Y="5.188" />
+        <Point X="11.25" Y="5.188" />
+        <Point X="11.25" Y="5.75" />
       </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.18" Y="0.73" />
+      </MemberNameLabel>
     </AssociationLine>
     <AssociationLine Name="path" Type="CarpoolingModel.Path" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="9.75" Y="2.188" />
-        <Point X="11.75" Y="2.188" />
-        <Point X="11.75" Y="1.36" />
+        <Point X="8.25" Y="7.738" />
+        <Point X="7.875" Y="7.738" />
+        <Point X="7.875" Y="11.5" />
+        <Point X="8.25" Y="11.5" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="type" Type="CarpoolingModel.RouteType" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="type" Type="CarpoolingModel.RouteType" FixedFromPoint="true">
       <Path>
-        <Point X="8.25" Y="2.188" />
-        <Point X="6.438" Y="2.188" />
-        <Point X="6.438" Y="1.535" />
+        <Point X="9.25" Y="7.738" />
+        <Point X="9.25" Y="9.25" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAECAAAAAAABAAAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAAAECAAQBAAAFAAAEAQAABAAAAAA=</HashCode>
       <FileName>Route.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -106,50 +110,53 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="CarpoolingModel.Repository.ClientRepository">
-    <Position X="3.25" Y="0.5" Width="1.5" />
+    <Position X="0.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>gAIEAARAAIAQCAAAAAAAEAAAAAQAAAAAAAAAAAQAAwA=</HashCode>
       <FileName>Repository\ClientRepository.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Field Name="listClient" />
     </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="CarpoolingModel.Repository.RouteRepository">
     <Position X="8.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAEAAAAAAABIAAEAAAAAAAAAAIAAAAAAEAAAAQQQAA=</HashCode>
       <FileName>Repository\RouteRepository.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Field Name="listRoute" />
     </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="CarpoolingModel.TravelCost">
-    <Position X="8.25" Y="4.75" Width="1.5" />
+    <Position X="3" Y="14.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
       <FileName>TravelCost.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="CarpoolingModel.Path">
-    <Position X="11" Y="0.5" Width="1.5" />
+    <Position X="8.25" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Path.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CarpoolingModel.Place">
-    <Position X="10.75" Y="3.75" Width="1.5" />
+    <Position X="10.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAIAAAAGAAAAAAAAAEA=</HashCode>
       <FileName>Place.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CarpoolingModel.Resource">
-    <Position X="7.5" Y="6.5" Width="1.5" />
+    <Position X="0.75" Y="12.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAIQAAAAAAAAAAAAAAFAAACAAAAAAAAAgA=</HashCode>
+      <HashCode>AAACAAgAAAAIQAAAAEAAAAQAAAIFAAACAQAAAAAAAgA=</HashCode>
       <FileName>Resource.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -157,31 +164,57 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="CarpoolingModel.Message">
-    <Position X="3" Y="6" Width="1.5" />
+    <Position X="5.25" Y="12.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiA=</HashCode>
+      <HashCode>AAADAAAAAAAAAAAAAAAAAAAAAAAIAAAACAAAAAEAAyA=</HashCode>
       <FileName>Message.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CarpoolingModel.GroupMember">
-    <Position X="3" Y="2.5" Width="1.5" />
+  <Class Name="CarpoolingModel.GroupRepository">
+    <Position X="5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAEAAQAAAAAQAAAAACAAAAAAAAEAAAAIQAIAQQAAAA=</HashCode>
+      <FileName>Repository\GroupRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="listGroup" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CarpoolingModel.GroupMember">
+    <Position X="2.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAQAACAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GroupMember.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="CarpoolingModel.PlaceRepository">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAQAQAQAAgQAAAAAAAAMAAEAAAAAAgAACQAEAA=</HashCode>
+      <FileName>Repository\PlaceRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Enum Name="CarpoolingModel.RouteType">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+    <Position X="8.25" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAgAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>RouteType.cs</FileName>
+      <FileName>Types\RouteType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="CarpoolingModel.ResourceType">
-    <Position X="10" Y="7" Width="1.5" />
+    <Position X="3" Y="12.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAEAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>ResourceType.cs</FileName>
+      <FileName>Types\ResourceType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CarpoolingModel.GroupType">
+    <Position X="3" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Types\GroupType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Tahoma" Size="9.75" />

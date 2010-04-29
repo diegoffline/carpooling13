@@ -5,7 +5,10 @@ using System.Text;
 
 namespace CarpoolingModel
 {
-    public class TravelCost
+    public class TravelCost : CarpoolingModel.ITravelCost
     {
+        public float calculateCosts(Group group) {
+            throw new System.NotImplementedException();
+        }
     }
 }

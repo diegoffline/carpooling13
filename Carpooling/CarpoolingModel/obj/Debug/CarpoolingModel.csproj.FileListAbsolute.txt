@@ -1,0 +1,9 @@
+D:\lokica\workspaceCSharp\carpooling13\Carpooling\CarpoolingModel\obj\Debug\ResolveAssemblyReference.cache
+D:\lokica\workspaceCSharp\carpooling13\Carpooling\CarpoolingModel\bin\Debug\CarpoolingDB.mdf
+D:\lokica\workspaceCSharp\carpooling13\Carpooling\CarpoolingModel\bin\Debug\CarpoolingDB_log.ldf
+D:\lokica\workspaceCSharp\carpooling13\Carpooling\CarpoolingModel\bin\Debug\CarpoolingModel.dll
+D:\lokica\workspaceCSharp\carpooling13\Carpooling\CarpoolingModel\bin\Debug\CarpoolingModel.pdb
+D:\lokica\workspaceCSharp\carpooling13\Carpooling\CarpoolingModel\bin\Debug\CarpoolingDAL.dll
+D:\lokica\workspaceCSharp\carpooling13\Carpooling\CarpoolingModel\bin\Debug\CarpoolingDAL.pdb
+D:\lokica\workspaceCSharp\carpooling13\Carpooling\CarpoolingModel\obj\Debug\CarpoolingModel.dll
+D:\lokica\workspaceCSharp\carpooling13\Carpooling\CarpoolingModel\obj\Debug\CarpoolingModel.pdb
