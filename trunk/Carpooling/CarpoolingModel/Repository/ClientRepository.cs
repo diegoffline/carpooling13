@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq;
+using System.Linq;
 using System.Text;
 using CarpoolingDAL;
 
 namespace CarpoolingModel.Repository {
     class ClientRepository : CarpoolingModel.Repository.IClientRepository {
         private static ClientRepository instanca = null;
-        List<Client> listClient;
         private static CarpoolingDBADataContext db = new CarpoolingDBADataContext();
         private ClientRepository() {
-            listClient = new List<Client>();
+            
         }
 
         public static ClientRepository getInstanca() {
@@ -21,11 +21,29 @@ namespace CarpoolingModel.Repository {
         }
 
         public void addClient(Client client) {
-            throw new System.NotImplementedException();
+            try {
+                db.Clients.InsertOnSubmit(RepositoryUtility.createDALClientFromClient(client));
+                db.SubmitChanges();
+            } catch (Exception) {
+                //TODO saznaj koje su iznimke
+                //iznimka se generira ako se narusi bilo koje pravilo vezano uz primary key ili foreign key. Znači, iznimka se 
+                //generira ako se pokuša dodati osoba koja ima JMBAG koji koristi neka druga osoba, zatim ako se pod osoba.sifUloga 
+                //stavi neki broj kojeg nema u tablici Uloga, itd..
+                //return false;
+            }
+            //return true;
         }
 
         public void removeClient(Client client) {
-            throw new System.NotImplementedException();
+            try {
+                CarpoolingDAL.Client cl = db.Clients.Single(o => o.idClient == client.Id);
+                db.Clients.DeleteOnSubmit(cl);
+                db.SubmitChanges();
+            } catch (Exception) {
+                //return false;
+            }
+
+            //return true;
         }
 
         public void updateClient(Client client) {
@@ -33,41 +51,35 @@ namespace CarpoolingModel.Repository {
         }
 
         public Client getClientByUsername(string username) {
-            throw new System.NotImplementedException();
+            CarpoolingDAL.Client cl = new CarpoolingDAL.Client();
+            try {
+                var query = db.Clients.Where(o => o.username == username).First();
+                cl = query as CarpoolingDAL.Client;
+            } catch (Exception) {
+                cl = null;
+            }
+
+            return RepositoryUtility.createClientFromDALClient(cl);
         }
 
         public Client getClientByEmail(string email) {
-            throw new System.NotImplementedException();
+            CarpoolingDAL.Client cl = new CarpoolingDAL.Client();
+            try {
+                var query = db.Clients.Where(o => o.email == email).First();
+                cl = query as CarpoolingDAL.Client;
+            } catch (Exception) {
+                cl = null;
+            }
+
+            return RepositoryUtility.createClientFromDALClient(cl);
         }
 
         public List<Client> getAllClients() {
             List<Client> allClients = new List<Client>();
             foreach (CarpoolingDAL.Client o in db.Clients) {
-                allClients.Add(createClientFromDALClient(o));
+                allClients.Add(RepositoryUtility.createClientFromDALClient(o));
             }
             return allClients;
-        }
-
-        public Client createClientFromDALClient(CarpoolingDAL.Client o) {
-            Client c = new Client(o.username, o.password);
-            c.ContactNumber = o.contactNumber;
-            c.Email = o.email;
-            c.Id = o.idClient;
-            c.Name = o.name;
-            c.Notes = o.notes;
-            c.Surname = o.surname;
-            foreach (CarpoolingDAL.Resource item in o.Resources) {
-                c.addResource(createResourceFromDALResource(item));
-            }
-            //TODO
-            //foreach (CarpoolingDAL.Route item in collection) {
-                
-            //}
-            return c;
-        }
-
-        public Resource createResourceFromDALResource(CarpoolingDAL.Resource item) {
-            throw new NotImplementedException();
         }
 
         public bool existClient(string clientUsername) {

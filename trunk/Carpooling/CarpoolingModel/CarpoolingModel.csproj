@@ -56,6 +56,7 @@
     <Compile Include="Group.cs" />
     <Compile Include="GroupMember.cs" />
     <Compile Include="Repository\GroupRepository.cs" />
+    <Compile Include="Repository\RepositoryUtility.cs" />
     <Compile Include="Types\GroupType.cs" />
     <Compile Include="Repository\IGroupRepository.cs" />
     <Compile Include="Repository\IPlaceRepository.cs" />

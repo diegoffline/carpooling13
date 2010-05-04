@@ -2,12 +2,6 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="CarpoolingModel.Client">
     <Position X="0.75" Y="5" Width="1.5" />
-    <AssociationLine Name="listResource" Type="CarpoolingModel.Resource" FixedFromPoint="true">
-      <Path>
-        <Point X="1.438" Y="11.149" />
-        <Point X="1.438" Y="12.25" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
       <HashCode>BAAigBkAACAQBAAgQQAkAAUgBCAEAAACAAAAAgAAKgA=</HashCode>
       <FileName>Client.cs</FileName>
@@ -112,12 +106,9 @@
   <Class Name="CarpoolingModel.Repository.ClientRepository">
     <Position X="0.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAIEAARAAIAQCAAAAAAAEAAAAAQAAAAAAAAAAAQAAwA=</HashCode>
+      <HashCode>gAIEAAQAAIAQCAAAAAAAEAAAAAQAAAAAAAAAAAQAAgA=</HashCode>
       <FileName>Repository\ClientRepository.cs</FileName>
     </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Field Name="listClient" />
-    </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CarpoolingModel.Repository.RouteRepository">
