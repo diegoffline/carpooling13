@@ -30,5 +30,14 @@ namespace CarpoolingModel.Repository {
         internal static CarpoolingDAL.Client createDALClientFromClient(Client client) {
             throw new NotImplementedException();
         }
+
+        internal static CarpoolingDAL.GroupMember createDALGroupMemberFromGroupMember(GroupMember groupMember)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static GroupMember createGroupMemberFromDALGroupMember(CarpoolingDAL.GroupMember groupMember) {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{5CA17412-27F7-4CCB-A474-CA98ED1F7848}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -55,8 +55,11 @@
     <Compile Include="Country.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="GroupMember.cs" />
+    <Compile Include="IResourceRepository.cs" />
     <Compile Include="Repository\GroupRepository.cs" />
+    <Compile Include="Repository\IRouteRepository.cs" />
     <Compile Include="Repository\RepositoryUtility.cs" />
+    <Compile Include="ResourceRepository.cs" />
     <Compile Include="Types\GroupType.cs" />
     <Compile Include="Repository\IGroupRepository.cs" />
     <Compile Include="Repository\IPlaceRepository.cs" />
@@ -70,7 +73,6 @@
     <Compile Include="Range.cs" />
     <Compile Include="Repository\ClientRepository.cs" />
     <Compile Include="Repository\IClientRepository.cs" />
-    <Compile Include="Repository\IRouteRepository.cs" />
     <Compile Include="Repository\RouteRepository.cs" />
     <Compile Include="Resource.cs" />
     <Compile Include="Types\ResourceType.cs" />

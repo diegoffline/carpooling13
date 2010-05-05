@@ -10,7 +10,7 @@ namespace CarpoolingModel.Repository {
         private static ClientRepository instanca = null;
         private static CarpoolingDBADataContext db = new CarpoolingDBADataContext();
         private ClientRepository() {
-            
+
         }
 
         public static ClientRepository getInstanca() {
@@ -47,7 +47,25 @@ namespace CarpoolingModel.Repository {
         }
 
         public void updateClient(Client client) {
-            throw new System.NotImplementedException();
+            try {
+                CarpoolingDAL.Client oldOne = db.Clients.Single(o => o.idClient == client.Id);
+                oldOne.contactNumber = client.ContactNumber;
+                oldOne.email = client.Email;
+                oldOne.name = client.Name;
+                oldOne.notes = client.Notes;
+                oldOne.password = client.Password;
+                oldOne.surname = client.Surname;
+                oldOne.username = client.Username;
+                foreach (Route item in client.getAllFirmRoutes()) {
+                    (RouteRepository.getInstanca()).updateRoute(item);
+                }
+                //TODO Update routes, resources
+                db.SubmitChanges();
+            } catch (Exception) {
+                //return false;
+            }
+
+            //return true;
         }
 
         public Client getClientByUsername(string username) {
@@ -83,15 +101,34 @@ namespace CarpoolingModel.Repository {
         }
 
         public bool existClient(string clientUsername) {
-            throw new System.NotImplementedException();
+            CarpoolingDAL.Client oldOne = db.Clients.Single(o => o.username == clientUsername);
+            if (oldOne != null) return true;
+            else return false;
         }
 
         public List<GroupMember> getGroupMembers(Group group) {
-            throw new System.NotImplementedException();
+
+            List<GroupMember> listMem = new List<GroupMember>();
+            var members = db.GroupMembers.Where(s => s.idGroup == group.Id);
+
+            foreach (CarpoolingDAL.GroupMember mem in members) {
+                listMem.Add(RepositoryUtility.createGroupMemberFromDALGroupMember(mem as CarpoolingDAL.GroupMember));
+            }
+            return listMem;
         }
 
         public void addGroupMember(GroupMember groupMember) {
-            throw new System.NotImplementedException();
+            try {
+                db.GroupMembers.InsertOnSubmit(RepositoryUtility.createDALGroupMemberFromGroupMember(groupMember));
+                db.SubmitChanges();
+            } catch (Exception) {
+                //TODO saznaj koje su iznimke
+                //iznimka se generira ako se narusi bilo koje pravilo vezano uz primary key ili foreign key. Znači, iznimka se 
+                //generira ako se pokuša dodati osoba koja ima JMBAG koji koristi neka druga osoba, zatim ako se pod osoba.sifUloga 
+                //stavi neki broj kojeg nema u tablici Uloga, itd..
+                //return false;
+            }
+            //return true;
         }
 
     }

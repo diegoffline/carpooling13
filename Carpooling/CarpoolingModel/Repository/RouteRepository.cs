@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CarpoolingModel.Repository
 {
-    class RouteRepository : CarpoolingModel.Repository.IRouteRepository
+    public class RouteRepository : CarpoolingModel.Repository.IRouteRepository
     {
         private List<Route> listRoute;
         private static RouteRepository instanca = null;
@@ -52,6 +52,10 @@ namespace CarpoolingModel.Repository
 
         public List<Route> getRouteByDestination(Place destination)
         {
+            throw new System.NotImplementedException();
+        }
+
+        public void addFirmRoute(Route route, Client client) {
             throw new System.NotImplementedException();
         }
     }
