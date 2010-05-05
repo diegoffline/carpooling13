@@ -114,7 +114,7 @@
   <Class Name="CarpoolingModel.Repository.RouteRepository">
     <Position X="8.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAAAABIAAEAAAAAAAAAAIAAAAAAEAAAAQQQAA=</HashCode>
+      <HashCode>AAAEAAEAAAABIAAEAAAAAAAAAAIAAAAAAEAAAAQQQAA=</HashCode>
       <FileName>Repository\RouteRepository.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -184,6 +184,14 @@
     <TypeIdentifier>
       <HashCode>AAAEAAAQAQAQAAgQAAAAAAAAMAAEAAAAAAgAACQAEAA=</HashCode>
       <FileName>Repository\PlaceRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CarpoolingModel.ResourceRepository">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BACEBAAAAAAQAAAAQAAgAAAgAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>ResourceRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
