@@ -7,5 +7,11 @@ namespace CarpoolingModel
 {
     public class Path
     {
+        string path;
+
+        public string PathDim {
+            get { return path; }
+            set { path = value; }
+        }
     }
 }

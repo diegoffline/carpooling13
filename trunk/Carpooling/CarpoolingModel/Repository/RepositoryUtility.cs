@@ -39,5 +39,33 @@ namespace CarpoolingModel.Repository {
         internal static GroupMember createGroupMemberFromDALGroupMember(CarpoolingDAL.GroupMember groupMember) {
             throw new NotImplementedException();
         }
+
+        internal static CarpoolingDAL.Resource createDALResourceFromResource(Resource resource) {
+            throw new NotImplementedException();
+        }
+
+        internal static CarpoolingDAL.ResourceType createDALResourceTyFromResourceTy(CarpoolingDAL.ResourceType resourceType) {
+            throw new NotImplementedException();
+        }
+
+        internal static CarpoolingDAL.ResourceType createResTyFromDALResTy(CarpoolingDAL.ResourceType o) {
+            throw new NotImplementedException();
+        }
+
+        internal static CarpoolingDAL.Group createDALGroupFromGroup(Group group) {
+            throw new NotImplementedException();
+        }
+
+        internal static Group createGroupFromDALGroup(CarpoolingDAL.Group g) {
+            throw new NotImplementedException();
+        }
+
+        internal static CarpoolingDAL.Route createDALRouteFromRoute(Route route) {
+            throw new NotImplementedException();
+        }
+
+        internal static CarpoolingDAL.StartFinish createDALStartFinishFromPlace(Place place) {
+            throw new NotImplementedException();
+        }
     }
 }

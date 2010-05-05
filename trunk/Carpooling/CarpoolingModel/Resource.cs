@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CarpoolingModel.Types;
 
 namespace CarpoolingModel
 {
@@ -9,7 +10,7 @@ namespace CarpoolingModel
     {
         private int id;
         private string name;
-        private int age;
+        private DateTime age;
         private int seatNumber;
         private float consumption;
         private ResourceType type;
@@ -27,7 +28,7 @@ namespace CarpoolingModel
             set { name = value; }
         }
 
-        public int Age
+        public DateTime Age
         {
             get { return age; }
             set { age = value; }
@@ -56,7 +57,7 @@ namespace CarpoolingModel
             this.seatNumber = seatNum;
             this.type = type;
         }
-        public Resource(int seatNum, ResourceType type, string name, int age, float consumption):this(seatNum,type) {
+        public Resource(int seatNum, ResourceType type, string name, DateTime age, float consumption):this(seatNum,type) {
             this.name = name;
             this.age = age;
             this.consumption = consumption;

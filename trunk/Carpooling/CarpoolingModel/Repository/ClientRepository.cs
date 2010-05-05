@@ -6,7 +6,7 @@ using System.Text;
 using CarpoolingDAL;
 
 namespace CarpoolingModel.Repository {
-    class ClientRepository : CarpoolingModel.Repository.IClientRepository {
+    class ClientRepository : CarpoolingModel.Repository.IClientRepository{
         private static ClientRepository instanca = null;
         private static CarpoolingDBADataContext db = new CarpoolingDBADataContext();
         private ClientRepository() {
@@ -42,12 +42,14 @@ namespace CarpoolingModel.Repository {
             } catch (Exception) {
                 //return false;
             }
-
+            CarpoolingDAL.Route r = new CarpoolingDAL.Route();
             //return true;
         }
 
         public void updateClient(Client client) {
             try {
+                RouteRepository rr = RouteRepository.getInstanca();
+                ResourceRepository rer = ResourceRepository.getInstanca();
                 CarpoolingDAL.Client oldOne = db.Clients.Single(o => o.idClient == client.Id);
                 oldOne.contactNumber = client.ContactNumber;
                 oldOne.email = client.Email;
@@ -57,9 +59,19 @@ namespace CarpoolingModel.Repository {
                 oldOne.surname = client.Surname;
                 oldOne.username = client.Username;
                 foreach (Route item in client.getAllFirmRoutes()) {
-                    (RouteRepository.getInstanca()).updateRoute(item);
+                    if (rr.existFirmRoute(item.Id, client.Id)) {
+                        rr.updateRoute(item);
+                    } else {
+                        rr.addFirmRoute(item, client);
+                    }
                 }
-                //TODO Update routes, resources
+                foreach (Resource item in client.getAllResource()) {
+                    if (rer.existResource(item.Id)) {
+                        rer.updateResource(item);
+                    } else {
+                        rer.addResource(item);
+                    }
+                }
                 db.SubmitChanges();
             } catch (Exception) {
                 //return false;

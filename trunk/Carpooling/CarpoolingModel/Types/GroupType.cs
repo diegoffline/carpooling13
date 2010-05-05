@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CarpoolingModel
+namespace CarpoolingModel.Types
 {
-    public enum GroupType
+    public class GroupType
     {
-        business = 0,
-        vacation = 1,
+        private int id;
+        private string name;
+
+        public int Id {
+            get { return id; }
+            set { id = value; }
+        }
+        public string Name {
+            get { return name; }
+            set { name = value; }
+        }
     }
 }
