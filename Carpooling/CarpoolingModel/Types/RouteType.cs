@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CarpoolingModel
+namespace CarpoolingModel.Types
 {
-    public enum RouteType
+    public class RouteType
     {
-        /// <summary>
-        /// firm group for one clientUsername
-        /// </summary>
-        firmRoute = 0,
-        /// <summary>
-        /// dynamic routes that occur ones or few times
-        /// </summary>
-        variableRoute = 1,
+        private int id;
+        private string name;
+
+        public int Id {
+            get { return id; }
+            set { id = value; }
+        }
+        public string Name {
+            get { return name; }
+            set { name = value; }
+        }
     }
 }

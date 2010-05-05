@@ -57,9 +57,6 @@ namespace CarpoolingDAL
     partial void InsertMessage(Message instance);
     partial void UpdateMessage(Message instance);
     partial void DeleteMessage(Message instance);
-    partial void InsertResource(Resource instance);
-    partial void UpdateResource(Resource instance);
-    partial void DeleteResource(Resource instance);
     partial void InsertResourceType(ResourceType instance);
     partial void UpdateResourceType(ResourceType instance);
     partial void DeleteResourceType(ResourceType instance);
@@ -69,12 +66,15 @@ namespace CarpoolingDAL
     partial void InsertRouteType(RouteType instance);
     partial void UpdateRouteType(RouteType instance);
     partial void DeleteRouteType(RouteType instance);
-    partial void InsertStartFinish(StartFinish instance);
-    partial void UpdateStartFinish(StartFinish instance);
-    partial void DeleteStartFinish(StartFinish instance);
     partial void InsertState(State instance);
     partial void UpdateState(State instance);
     partial void DeleteState(State instance);
+    partial void InsertResource(Resource instance);
+    partial void UpdateResource(Resource instance);
+    partial void DeleteResource(Resource instance);
+    partial void InsertStartFinish(StartFinish instance);
+    partial void UpdateStartFinish(StartFinish instance);
+    partial void DeleteStartFinish(StartFinish instance);
     #endregion
 		
 		public CarpoolingDBADataContext() : 
@@ -179,14 +179,6 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		public System.Data.Linq.Table<Resource> Resources
-		{
-			get
-			{
-				return this.GetTable<Resource>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ResourceType> ResourceTypes
 		{
 			get
@@ -211,19 +203,27 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		public System.Data.Linq.Table<StartFinish> StartFinishes
-		{
-			get
-			{
-				return this.GetTable<StartFinish>();
-			}
-		}
-		
 		public System.Data.Linq.Table<State> States
 		{
 			get
 			{
 				return this.GetTable<State>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Resource> Resources
+		{
+			get
+			{
+				return this.GetTable<Resource>();
+			}
+		}
+		
+		public System.Data.Linq.Table<StartFinish> StartFinishes
+		{
+			get
+			{
+				return this.GetTable<StartFinish>();
 			}
 		}
 	}
@@ -2206,322 +2206,6 @@ namespace CarpoolingDAL
 		}
 	}
 	
-	[Table(Name="dbo.Resource")]
-	public partial class Resource : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _idResource;
-		
-		private System.Nullable<int> _ResourceType;
-		
-		private string _name;
-		
-		private System.Nullable<System.DateTime> _age;
-		
-		private int _seatNumber;
-		
-		private double _consumption;
-		
-		private int _owner;
-		
-		private EntitySet<GroupMember> _GroupMembers;
-		
-		private EntityRef<Client> _Client;
-		
-		private EntityRef<ResourceType> _ResourceType1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidResourceChanging(int value);
-    partial void OnidResourceChanged();
-    partial void OnResourceTypeChanging(System.Nullable<int> value);
-    partial void OnResourceTypeChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OnageChanging(System.Nullable<System.DateTime> value);
-    partial void OnageChanged();
-    partial void OnseatNumberChanging(int value);
-    partial void OnseatNumberChanged();
-    partial void OnconsumptionChanging(double value);
-    partial void OnconsumptionChanged();
-    partial void OnownerChanging(int value);
-    partial void OnownerChanged();
-    #endregion
-		
-		public Resource()
-		{
-			this._GroupMembers = new EntitySet<GroupMember>(new Action<GroupMember>(this.attach_GroupMembers), new Action<GroupMember>(this.detach_GroupMembers));
-			this._Client = default(EntityRef<Client>);
-			this._ResourceType1 = default(EntityRef<ResourceType>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_idResource", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idResource
-		{
-			get
-			{
-				return this._idResource;
-			}
-			set
-			{
-				if ((this._idResource != value))
-				{
-					this.OnidResourceChanging(value);
-					this.SendPropertyChanging();
-					this._idResource = value;
-					this.SendPropertyChanged("idResource");
-					this.OnidResourceChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ResourceType", DbType="Int")]
-		public System.Nullable<int> ResourceType
-		{
-			get
-			{
-				return this._ResourceType;
-			}
-			set
-			{
-				if ((this._ResourceType != value))
-				{
-					if (this._ResourceType1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnResourceTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ResourceType = value;
-					this.SendPropertyChanged("ResourceType");
-					this.OnResourceTypeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_name", DbType="NChar(100)")]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_age", DbType="DateTime")]
-		public System.Nullable<System.DateTime> age
-		{
-			get
-			{
-				return this._age;
-			}
-			set
-			{
-				if ((this._age != value))
-				{
-					this.OnageChanging(value);
-					this.SendPropertyChanging();
-					this._age = value;
-					this.SendPropertyChanged("age");
-					this.OnageChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_seatNumber", DbType="Int NOT NULL")]
-		public int seatNumber
-		{
-			get
-			{
-				return this._seatNumber;
-			}
-			set
-			{
-				if ((this._seatNumber != value))
-				{
-					this.OnseatNumberChanging(value);
-					this.SendPropertyChanging();
-					this._seatNumber = value;
-					this.SendPropertyChanged("seatNumber");
-					this.OnseatNumberChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_consumption", DbType="Float NOT NULL")]
-		public double consumption
-		{
-			get
-			{
-				return this._consumption;
-			}
-			set
-			{
-				if ((this._consumption != value))
-				{
-					this.OnconsumptionChanging(value);
-					this.SendPropertyChanging();
-					this._consumption = value;
-					this.SendPropertyChanged("consumption");
-					this.OnconsumptionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_owner", DbType="Int NOT NULL")]
-		public int owner
-		{
-			get
-			{
-				return this._owner;
-			}
-			set
-			{
-				if ((this._owner != value))
-				{
-					if (this._Client.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnownerChanging(value);
-					this.SendPropertyChanging();
-					this._owner = value;
-					this.SendPropertyChanged("owner");
-					this.OnownerChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Resource_GroupMember", Storage="_GroupMembers", ThisKey="idResource", OtherKey="resource")]
-		public EntitySet<GroupMember> GroupMembers
-		{
-			get
-			{
-				return this._GroupMembers;
-			}
-			set
-			{
-				this._GroupMembers.Assign(value);
-			}
-		}
-		
-		[Association(Name="Client_Resource", Storage="_Client", ThisKey="owner", OtherKey="idClient", IsForeignKey=true)]
-		public Client Client
-		{
-			get
-			{
-				return this._Client.Entity;
-			}
-			set
-			{
-				Client previousValue = this._Client.Entity;
-				if (((previousValue != value) 
-							|| (this._Client.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Client.Entity = null;
-						previousValue.Resources.Remove(this);
-					}
-					this._Client.Entity = value;
-					if ((value != null))
-					{
-						value.Resources.Add(this);
-						this._owner = value.idClient;
-					}
-					else
-					{
-						this._owner = default(int);
-					}
-					this.SendPropertyChanged("Client");
-				}
-			}
-		}
-		
-		[Association(Name="ResourceType_Resource", Storage="_ResourceType1", ThisKey="ResourceType", OtherKey="idResourceType", IsForeignKey=true)]
-		public ResourceType ResourceType1
-		{
-			get
-			{
-				return this._ResourceType1.Entity;
-			}
-			set
-			{
-				ResourceType previousValue = this._ResourceType1.Entity;
-				if (((previousValue != value) 
-							|| (this._ResourceType1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ResourceType1.Entity = null;
-						previousValue.Resources.Remove(this);
-					}
-					this._ResourceType1.Entity = value;
-					if ((value != null))
-					{
-						value.Resources.Add(this);
-						this._ResourceType = value.idResourceType;
-					}
-					else
-					{
-						this._ResourceType = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ResourceType1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_GroupMembers(GroupMember entity)
-		{
-			this.SendPropertyChanging();
-			entity.Resource1 = this;
-		}
-		
-		private void detach_GroupMembers(GroupMember entity)
-		{
-			this.SendPropertyChanging();
-			entity.Resource1 = null;
-		}
-	}
-	
 	[Table(Name="dbo.ResourceType")]
 	public partial class ResourceType : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2590,7 +2274,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="ResourceType_Resource", Storage="_Resources", ThisKey="idResourceType", OtherKey="ResourceType")]
+		[Association(Name="ResourceType_Resource", Storage="_Resources", ThisKey="idResourceType", OtherKey="resourceType")]
 		public EntitySet<Resource> Resources
 		{
 			get
@@ -2989,6 +2673,460 @@ namespace CarpoolingDAL
 		}
 	}
 	
+	[Table(Name="dbo.State")]
+	public partial class State : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idState;
+		
+		private string _name;
+		
+		private EntitySet<Coutry> _Coutries;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidStateChanging(int value);
+    partial void OnidStateChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    #endregion
+		
+		public State()
+		{
+			this._Coutries = new EntitySet<Coutry>(new Action<Coutry>(this.attach_Coutries), new Action<Coutry>(this.detach_Coutries));
+			OnCreated();
+		}
+		
+		[Column(Storage="_idState", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idState
+		{
+			get
+			{
+				return this._idState;
+			}
+			set
+			{
+				if ((this._idState != value))
+				{
+					this.OnidStateChanging(value);
+					this.SendPropertyChanging();
+					this._idState = value;
+					this.SendPropertyChanged("idState");
+					this.OnidStateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_name", DbType="NChar(100) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[Association(Name="State_Coutry", Storage="_Coutries", ThisKey="idState", OtherKey="idState")]
+		public EntitySet<Coutry> Coutries
+		{
+			get
+			{
+				return this._Coutries;
+			}
+			set
+			{
+				this._Coutries.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Coutries(Coutry entity)
+		{
+			this.SendPropertyChanging();
+			entity.State = this;
+		}
+		
+		private void detach_Coutries(Coutry entity)
+		{
+			this.SendPropertyChanging();
+			entity.State = null;
+		}
+	}
+	
+	[Table(Name="dbo.Resource")]
+	public partial class Resource : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idResource;
+		
+		private System.Nullable<int> _resourceType;
+		
+		private string _name;
+		
+		private System.Nullable<System.DateTime> _age;
+		
+		private int _seatNumber;
+		
+		private double _consumption;
+		
+		private int _owner;
+		
+		private bool _active;
+		
+		private EntitySet<GroupMember> _GroupMembers;
+		
+		private EntityRef<Client> _Client;
+		
+		private EntityRef<ResourceType> _ResourceType1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidResourceChanging(int value);
+    partial void OnidResourceChanged();
+    partial void OnresourceTypeChanging(System.Nullable<int> value);
+    partial void OnresourceTypeChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnageChanging(System.Nullable<System.DateTime> value);
+    partial void OnageChanged();
+    partial void OnseatNumberChanging(int value);
+    partial void OnseatNumberChanged();
+    partial void OnconsumptionChanging(double value);
+    partial void OnconsumptionChanged();
+    partial void OnownerChanging(int value);
+    partial void OnownerChanged();
+    partial void OnactiveChanging(bool value);
+    partial void OnactiveChanged();
+    #endregion
+		
+		public Resource()
+		{
+			this._GroupMembers = new EntitySet<GroupMember>(new Action<GroupMember>(this.attach_GroupMembers), new Action<GroupMember>(this.detach_GroupMembers));
+			this._Client = default(EntityRef<Client>);
+			this._ResourceType1 = default(EntityRef<ResourceType>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_idResource", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idResource
+		{
+			get
+			{
+				return this._idResource;
+			}
+			set
+			{
+				if ((this._idResource != value))
+				{
+					this.OnidResourceChanging(value);
+					this.SendPropertyChanging();
+					this._idResource = value;
+					this.SendPropertyChanged("idResource");
+					this.OnidResourceChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_resourceType", DbType="Int")]
+		public System.Nullable<int> resourceType
+		{
+			get
+			{
+				return this._resourceType;
+			}
+			set
+			{
+				if ((this._resourceType != value))
+				{
+					if (this._ResourceType1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnresourceTypeChanging(value);
+					this.SendPropertyChanging();
+					this._resourceType = value;
+					this.SendPropertyChanged("resourceType");
+					this.OnresourceTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_name", DbType="NChar(100)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_age", DbType="DateTime")]
+		public System.Nullable<System.DateTime> age
+		{
+			get
+			{
+				return this._age;
+			}
+			set
+			{
+				if ((this._age != value))
+				{
+					this.OnageChanging(value);
+					this.SendPropertyChanging();
+					this._age = value;
+					this.SendPropertyChanged("age");
+					this.OnageChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_seatNumber", DbType="Int NOT NULL")]
+		public int seatNumber
+		{
+			get
+			{
+				return this._seatNumber;
+			}
+			set
+			{
+				if ((this._seatNumber != value))
+				{
+					this.OnseatNumberChanging(value);
+					this.SendPropertyChanging();
+					this._seatNumber = value;
+					this.SendPropertyChanged("seatNumber");
+					this.OnseatNumberChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_consumption", DbType="Float NOT NULL")]
+		public double consumption
+		{
+			get
+			{
+				return this._consumption;
+			}
+			set
+			{
+				if ((this._consumption != value))
+				{
+					this.OnconsumptionChanging(value);
+					this.SendPropertyChanging();
+					this._consumption = value;
+					this.SendPropertyChanged("consumption");
+					this.OnconsumptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_owner", DbType="Int NOT NULL")]
+		public int owner
+		{
+			get
+			{
+				return this._owner;
+			}
+			set
+			{
+				if ((this._owner != value))
+				{
+					if (this._Client.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnownerChanging(value);
+					this.SendPropertyChanging();
+					this._owner = value;
+					this.SendPropertyChanged("owner");
+					this.OnownerChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_active", DbType="Bit NOT NULL")]
+		public bool active
+		{
+			get
+			{
+				return this._active;
+			}
+			set
+			{
+				if ((this._active != value))
+				{
+					this.OnactiveChanging(value);
+					this.SendPropertyChanging();
+					this._active = value;
+					this.SendPropertyChanged("active");
+					this.OnactiveChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Resource_GroupMember", Storage="_GroupMembers", ThisKey="idResource", OtherKey="resource")]
+		public EntitySet<GroupMember> GroupMembers
+		{
+			get
+			{
+				return this._GroupMembers;
+			}
+			set
+			{
+				this._GroupMembers.Assign(value);
+			}
+		}
+		
+		[Association(Name="Client_Resource", Storage="_Client", ThisKey="owner", OtherKey="idClient", IsForeignKey=true)]
+		public Client Client
+		{
+			get
+			{
+				return this._Client.Entity;
+			}
+			set
+			{
+				Client previousValue = this._Client.Entity;
+				if (((previousValue != value) 
+							|| (this._Client.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Client.Entity = null;
+						previousValue.Resources.Remove(this);
+					}
+					this._Client.Entity = value;
+					if ((value != null))
+					{
+						value.Resources.Add(this);
+						this._owner = value.idClient;
+					}
+					else
+					{
+						this._owner = default(int);
+					}
+					this.SendPropertyChanged("Client");
+				}
+			}
+		}
+		
+		[Association(Name="ResourceType_Resource", Storage="_ResourceType1", ThisKey="resourceType", OtherKey="idResourceType", IsForeignKey=true)]
+		public ResourceType ResourceType1
+		{
+			get
+			{
+				return this._ResourceType1.Entity;
+			}
+			set
+			{
+				ResourceType previousValue = this._ResourceType1.Entity;
+				if (((previousValue != value) 
+							|| (this._ResourceType1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ResourceType1.Entity = null;
+						previousValue.Resources.Remove(this);
+					}
+					this._ResourceType1.Entity = value;
+					if ((value != null))
+					{
+						value.Resources.Add(this);
+						this._resourceType = value.idResourceType;
+					}
+					else
+					{
+						this._resourceType = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ResourceType1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_GroupMembers(GroupMember entity)
+		{
+			this.SendPropertyChanging();
+			entity.Resource1 = this;
+		}
+		
+		private void detach_GroupMembers(GroupMember entity)
+		{
+			this.SendPropertyChanging();
+			entity.Resource1 = null;
+		}
+	}
+	
 	[Table(Name="dbo.StartFinish")]
 	public partial class StartFinish : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3028,7 +3166,7 @@ namespace CarpoolingDAL
 			OnCreated();
 		}
 		
-		[Column(Storage="_idCity", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_idCity", DbType="Int NOT NULL")]
 		public int idCity
 		{
 			get
@@ -3202,120 +3340,6 @@ namespace CarpoolingDAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[Table(Name="dbo.State")]
-	public partial class State : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _idState;
-		
-		private string _name;
-		
-		private EntitySet<Coutry> _Coutries;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidStateChanging(int value);
-    partial void OnidStateChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    #endregion
-		
-		public State()
-		{
-			this._Coutries = new EntitySet<Coutry>(new Action<Coutry>(this.attach_Coutries), new Action<Coutry>(this.detach_Coutries));
-			OnCreated();
-		}
-		
-		[Column(Storage="_idState", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idState
-		{
-			get
-			{
-				return this._idState;
-			}
-			set
-			{
-				if ((this._idState != value))
-				{
-					this.OnidStateChanging(value);
-					this.SendPropertyChanging();
-					this._idState = value;
-					this.SendPropertyChanged("idState");
-					this.OnidStateChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_name", DbType="NChar(100) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[Association(Name="State_Coutry", Storage="_Coutries", ThisKey="idState", OtherKey="idState")]
-		public EntitySet<Coutry> Coutries
-		{
-			get
-			{
-				return this._Coutries;
-			}
-			set
-			{
-				this._Coutries.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Coutries(Coutry entity)
-		{
-			this.SendPropertyChanging();
-			entity.State = this;
-		}
-		
-		private void detach_Coutries(Coutry entity)
-		{
-			this.SendPropertyChanging();
-			entity.State = null;
 		}
 	}
 }

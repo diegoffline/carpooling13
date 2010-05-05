@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CarpoolingModel.Types;
 
 namespace CarpoolingModel
 {
     public class Route
     {
+        private int id;
         private Place startingPoint;
         private Place destination;
         private Path path;
@@ -15,6 +17,10 @@ namespace CarpoolingModel
 
 
         #region Properties
+        public int Id {
+            get { return id; }
+            set { id = value; }
+        }
         public Place StartingPoint {
             get { return startingPoint; }
             set { startingPoint = value; }

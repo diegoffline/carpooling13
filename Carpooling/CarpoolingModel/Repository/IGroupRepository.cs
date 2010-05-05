@@ -1,4 +1,5 @@
 ﻿using System;
+using CarpoolingModel.Types;
 namespace CarpoolingModel
 {
     interface IGroupRepository
