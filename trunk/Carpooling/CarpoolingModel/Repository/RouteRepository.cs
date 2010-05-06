@@ -21,9 +21,10 @@ namespace CarpoolingModel.Repository {
 
         public void addRoute(Route route) {
             try {
+                PlaceRepository pr = PlaceRepository.getInstanca();
                 db.Routes.InsertOnSubmit(RepositoryUtility.createDALRouteFromRoute(route));
-                db.StartFinishes.InsertOnSubmit(RepositoryUtility.createDALStartFinishFromPlace(route.StartingPoint));
-                db.StartFinishes.InsertOnSubmit(RepositoryUtility.createDALStartFinishFromPlace(route.Destination));
+                pr.addPlace(route.StartingPoint);
+                pr.addPlace(route.Destination);
                 db.SubmitChanges();
             } catch (Exception) {
                 //TODO saznaj koje su iznimke
@@ -66,30 +67,20 @@ namespace CarpoolingModel.Repository {
 
         public void updateRoute(Route route) {
             try {
-                RouteRepository rr = RouteRepository.getInstanca();
+                PlaceRepository pr = PlaceRepository.getInstanca();
                 ResourceRepository rer = ResourceRepository.getInstanca();
-                CarpoolingDAL.Client oldOne = db.Clients.Single(o => o.idClient == client.Id);
-                oldOne.contactNumber = client.ContactNumber;
-                oldOne.email = client.Email;
-                oldOne.name = client.Name;
-                oldOne.notes = client.Notes;
-                oldOne.password = client.Password;
-                oldOne.surname = client.Surname;
-                oldOne.username = client.Username;
-                foreach (Route item in client.getAllFirmRoutes()) {
-                    if (rr.existFirmRoute(item.Id, client.Id)) {
-                        rr.updateRoute(item);
-                    } else {
-                        rr.addFirmRoute(item, client);
-                    }
+                CarpoolingDAL.Route oldOne = db.Routes.Single(o => o.idRoute == route.Id);
+                oldOne.name = route.Name;
+                byte[] result = new byte[route.Path.PathDim.Length];
+                int i = 0;
+                foreach (char item in route.Path.PathDim.ToCharArray()) {
+                    result[i] = Convert.ToByte(item);
+                    i++;
                 }
-                foreach (Resource item in client.getAllResource()) {
-                    if (rer.existResource(item.Id)) {
-                        rer.updateResource(item);
-                    } else {
-                        rer.addResource(item);
-                    }
-                }
+                oldOne.path = result;
+                oldOne.routeType = route.Type.Id;
+                pr.updatePlace(route.StartingPoint, route);
+                pr.updatePlace(route.Destination, route);
                 db.SubmitChanges();
             } catch (Exception) {
                 //return false;
@@ -99,23 +90,69 @@ namespace CarpoolingModel.Repository {
         }
 
         public Route getRouteById(int idRoute) {
-            throw new System.NotImplementedException();
+            PlaceRepository pr = PlaceRepository.getInstanca();
+            CarpoolingDAL.Route rt = new CarpoolingDAL.Route();
+            Route rrt = new Route();
+            try {
+                var query = db.Routes.Where(o => o.idRoute == idRoute).First();
+                rt = query as CarpoolingDAL.Route;
+                rrt.Id = rt.idRoute;
+                rrt.Name = rt.name;
+                rrt.Path.PathDim = rt.path.ToString();
+                rrt.Type.Id = rt.routeType;
+                rrt.Type.Name = ((db.RouteTypes.Where(o => o.idRouteType == rt.routeType).First()) as CarpoolingDAL.RouteType).name;
+                rrt.Destination = pr.getPlace(idRoute, Place.DESTINATION);
+                rrt.StartingPoint = pr.getPlace(idRoute, Place.STARTING_POINT);
+            } catch (Exception) {
+                rrt = null;
+            }
+
+            return rrt;
         }
 
-        public List<Route> getRoutesByType(RouteType type) {
-            throw new System.NotImplementedException();
+        public List<Route> getRoutesByType(CarpoolingModel.Types.RouteType type) {
+            List<Route> listRt = new List<Route>();
+            var routes = db.Routes.Where(s => s.routeType == type.Id);
+
+            foreach (CarpoolingDAL.Route res in routes) {
+                listRt.Add(getRouteById(res.idRoute));
+            }
+            return listRt;
         }
 
         public List<Route> getRoutesByStart(Place start) {
-            throw new System.NotImplementedException();
+            return getRoutesByPlace(start);
         }
 
         public List<Route> getRouteByDestination(Place destination) {
-            throw new System.NotImplementedException();
+            return getRoutesByPlace(destination);
+        }
+
+        private List<Route> getRoutesByPlace(Place place) {
+            List<Route> listRt = new List<Route>();
+            var places = db.StartFinishes.Where(s => s.direction == place.InOrOut && s.idCity == place.City.Id);
+
+            foreach (CarpoolingDAL.StartFinish res in places) {
+                listRt.Add(getRouteById(res.idRoute));
+            }
+            return listRt;
         }
 
         public void addFirmRoute(Route route, Client client) {
-            throw new System.NotImplementedException();
+            try {
+                CarpoolingDAL.FirmRoute fr = new FirmRoute();
+                fr.idClient = client.Id;
+                fr.idRoute = route.Id;
+                db.FirmRoutes.InsertOnSubmit(fr);
+                db.SubmitChanges();
+            } catch (Exception) {
+                //TODO saznaj koje su iznimke
+                //iznimka se generira ako se narusi bilo koje pravilo vezano uz primary key ili foreign key. Znači, iznimka se 
+                //generira ako se pokuša dodati osoba koja ima JMBAG koji koristi neka druga osoba, zatim ako se pod osoba.sifUloga 
+                //stavi neki broj kojeg nema u tablici Uloga, itd..
+                //return false;
+            }
+            //return true;
         }
 
         public bool existFirmRoute(int routeId, int clientId) {

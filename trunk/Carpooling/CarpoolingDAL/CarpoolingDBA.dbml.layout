@@ -33,7 +33,7 @@
         <elementListCompartment Id="3015cfef-bb4b-4053-a6da-7659966092b2" absoluteBounds="8.89, 3.96, 1.9700000000000002, 0.62416585286458326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(9.875 : 4.875); (9.875 : 4.68416585286458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.875 : 4.875); (9.875 : 4.68416585286458)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CarpoolingDBADataContext/Client/Client_FirmRoute" />
       <nodes>
         <classShapeMoniker Id="91551b11-43de-4a6a-b497-cf2c2a05aed9" />
@@ -59,7 +59,7 @@
         <classShapeMoniker Id="65228048-6b75-4968-b0a8-ed5c9f3177fa" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.875 : 6.15657674153646); (7.875 : 6.15657674153646)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.875 : 6.15657674153646); (7.875 : 6.15657674153646)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CarpoolingDBADataContext/Client/Client_GroupMember" />
       <nodes>
         <classShapeMoniker Id="91551b11-43de-4a6a-b497-cf2c2a05aed9" />
@@ -72,7 +72,7 @@
         <elementListCompartment Id="6acc31e6-afd8-44b2-887b-157b33284150" absoluteBounds="0.76500000000000012, 7.9600000000000009, 1.9700000000000002, 0.62416585286458326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.8125 : 7.5); (1.8125 : 7.00663492838542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.8125 : 7.5); (1.8125 : 7.00663492838542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CarpoolingDBADataContext/GroupType/GroupType_Group" />
       <nodes>
         <classShapeMoniker Id="a9b26011-895f-4bcb-bc31-daf98c6f4e48" />
@@ -85,14 +85,14 @@
         <elementListCompartment Id="5d78e0e8-2b7c-4e3f-a08d-da8525b29fe3" absoluteBounds="3.5150000000000006, 6.96, 1.9700000000000002, 0.81365966796875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.875 : 6.75331746419271); (3.5 : 6.75331746419271)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.875 : 6.75331746419271); (3.5 : 6.75331746419271)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CarpoolingDBADataContext/Group/Group_LeaveAMessage" />
       <nodes>
         <classShapeMoniker Id="4d6536f3-1f84-4dfa-8167-b5e7625b4ed3" />
         <classShapeMoniker Id="ca1e0ab2-ee69-4030-9b31-ff808e8e62e6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.875 : 7.09839111328125); (8.45833333333333 : 7.09839111328125 : JumpStart); (8.29166666666667 : 7.09839111328125 : JumpEnd); (5.5 : 7.09839111328125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.875 : 7.09839111328125); (8.45833333333333 : 7.09839111328125 : JumpStart); (8.29166666666667 : 7.09839111328125 : JumpEnd); (5.5 : 7.09839111328125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CarpoolingDBADataContext/Client/Client_LeaveAMessage" />
       <nodes>
         <classShapeMoniker Id="91551b11-43de-4a6a-b497-cf2c2a05aed9" />
@@ -105,7 +105,7 @@
         <elementListCompartment Id="d5b5d439-697f-4460-9d9c-adffc14cd567" absoluteBounds="3.1400000000000006, 8.835, 1.9700000000000002, 0.81365966796875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.3125 : 8.375); (4.3125 : 7.87365966796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.3125 : 8.375); (4.3125 : 7.87365966796875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CarpoolingDBADataContext/Message/Message_LeaveAMessage" />
       <nodes>
         <classShapeMoniker Id="bdd9ea62-551b-49df-b46b-f1fc9f928a3a" />
@@ -118,46 +118,19 @@
         <elementListCompartment Id="d54f5a12-7384-48e2-a49e-6e44c529e0d9" absoluteBounds="5.89, 9.585, 1.9700000000000002, 0.62416585286458326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="8160f374-db98-4935-a0a7-8935cf341e5b" absoluteBounds="5.875, 3.625, 2, 1.37365966796875">
-      <DataClassMoniker Name="/CarpoolingDBADataContext/Route" />
-      <nestedChildShapes>
-        <elementListCompartment Id="880b8cb4-28d3-481b-8bbc-d4cf47cc3819" absoluteBounds="5.89, 4.085, 1.9700000000000002, 0.81365966796875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(7.875 : 4.15458292643229); (8.875 : 4.15458292643229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/CarpoolingDBADataContext/Route/Route_FirmRoute" />
-      <nodes>
-        <classShapeMoniker Id="8160f374-db98-4935-a0a7-8935cf341e5b" />
-        <classShapeMoniker Id="b0627002-a12b-4d87-90c6-3b34f3efca97" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.875 : 4.50032624153646); (1.875 : 4.50032624153646); (1.875 : 4.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/CarpoolingDBADataContext/Route/Route_Group" />
-      <nodes>
-        <classShapeMoniker Id="8160f374-db98-4935-a0a7-8935cf341e5b" />
-        <classShapeMoniker Id="4d6536f3-1f84-4dfa-8167-b5e7625b4ed3" />
-      </nodes>
-    </associationConnector>
     <classShape Id="5c549207-28df-4e3f-99b5-6673ac156186" absoluteBounds="7.625, 2.125, 2, 1.1841658528645833">
       <DataClassMoniker Name="/CarpoolingDBADataContext/RouteType" />
       <nestedChildShapes>
         <elementListCompartment Id="77c89fe1-6d7f-438b-ae6a-38ce7f7b8ca1" absoluteBounds="7.64, 2.585, 1.9700000000000002, 0.62416585286458326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.625 : 2.71708292643229); (6.843749 : 2.71708292643229); (6.843749 : 3.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/CarpoolingDBADataContext/RouteType/RouteType_Route" />
-      <nodes>
-        <classShapeMoniker Id="5c549207-28df-4e3f-99b5-6673ac156186" />
-        <classShapeMoniker Id="8160f374-db98-4935-a0a7-8935cf341e5b" />
-      </nodes>
-    </associationConnector>
     <classShape Id="8600708c-9eec-4db4-822e-781d9683ce37" absoluteBounds="8.875, 0.5, 2, 1.1841658528645833">
       <DataClassMoniker Name="/CarpoolingDBADataContext/State" />
       <nestedChildShapes>
         <elementListCompartment Id="fdb97ccc-b444-4e2c-af1e-7e3f6b4c9935" absoluteBounds="8.89, 0.96, 1.9700000000000002, 0.62416585286458326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.875 : 1.09208292643229); (7.375 : 1.09208292643229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.875 : 1.09208292643229); (7.375 : 1.09208292643229)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CarpoolingDBADataContext/State/State_Coutry" />
       <nodes>
         <classShapeMoniker Id="8600708c-9eec-4db4-822e-781d9683ce37" />
@@ -170,21 +143,21 @@
         <elementListCompartment Id="23d81f2e-d742-4703-b812-7b9d1fac30a5" absoluteBounds="8.765, 8.46, 1.9700000000000002, 1.7611287434895835" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.75 : 8); (8.375 : 7.625); (8.375 : 6.57861711230469); (7.875 : 6.57861711230469)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.75 : 8); (8.375 : 7.625); (8.375 : 6.57861711230469); (7.875 : 6.57861711230469)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CarpoolingDBADataContext/Resource/Resource_GroupMember" />
       <nodes>
         <classShapeMoniker Id="7d4e80b1-d2c7-4b70-8946-8d7c392e54c5" />
         <classShapeMoniker Id="65228048-6b75-4968-b0a8-ed5c9f3177fa" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9.8125 : 7.19612874348958); (9.8125 : 8)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.8125 : 7.19612874348958); (9.8125 : 8)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CarpoolingDBADataContext/Client/Client_Resource" />
       <nodes>
         <classShapeMoniker Id="91551b11-43de-4a6a-b497-cf2c2a05aed9" />
         <classShapeMoniker Id="7d4e80b1-d2c7-4b70-8946-8d7c392e54c5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.875 : 9.71708292643229); (8.75 : 9.71708292643229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.875 : 9.71708292643229); (8.75 : 9.71708292643229)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CarpoolingDBADataContext/ResourceType/ResourceType_Resource" />
       <nodes>
         <classShapeMoniker Id="4586e425-a85c-4eab-84e6-1ed775e9725d" />
@@ -204,11 +177,38 @@
         <classShapeMoniker Id="fbfda76b-5c44-4716-b228-7d233c807884" />
       </nodes>
     </associationConnector>
+    <classShape Id="60fc9ebc-931a-46f6-9738-7668956f04cb" absoluteBounds="5.875, 3.625, 2, 1.5631534830729166">
+      <DataClassMoniker Name="/CarpoolingDBADataContext/Route" />
+      <nestedChildShapes>
+        <elementListCompartment Id="209011cb-624c-41b7-a243-2c1bfea28bf4" absoluteBounds="5.89, 4.085, 1.9700000000000002, 1.0031534830729165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.875 : 4.15458292643229); (8.875 : 4.15458292643229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CarpoolingDBADataContext/Route/Route_FirmRoute" />
+      <nodes>
+        <classShapeMoniker Id="60fc9ebc-931a-46f6-9738-7668956f04cb" />
+        <classShapeMoniker Id="b0627002-a12b-4d87-90c6-3b34f3efca97" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.875 : 4.50032624153646); (1.875 : 4.50032624153646); (1.875 : 4.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CarpoolingDBADataContext/Route/Route_Group" />
+      <nodes>
+        <classShapeMoniker Id="60fc9ebc-931a-46f6-9738-7668956f04cb" />
+        <classShapeMoniker Id="4d6536f3-1f84-4dfa-8167-b5e7625b4ed3" />
+      </nodes>
+    </associationConnector>
     <associationConnector edgePoints="[(5.875 : 3.84407674153646); (5.125 : 3.84407674153646)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CarpoolingDBADataContext/Route/Route_StartFinish" />
       <nodes>
-        <classShapeMoniker Id="8160f374-db98-4935-a0a7-8935cf341e5b" />
+        <classShapeMoniker Id="60fc9ebc-931a-46f6-9738-7668956f04cb" />
         <classShapeMoniker Id="fbfda76b-5c44-4716-b228-7d233c807884" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.625 : 2.71708292643229); (6.7499995 : 2.71708292643229); (6.7499995 : 3.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CarpoolingDBADataContext/RouteType/RouteType_Route" />
+      <nodes>
+        <classShapeMoniker Id="5c549207-28df-4e3f-99b5-6673ac156186" />
+        <classShapeMoniker Id="60fc9ebc-931a-46f6-9738-7668956f04cb" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

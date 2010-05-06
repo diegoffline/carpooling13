@@ -7,8 +7,8 @@
       <Column Name="idCity" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="idCoutry" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="City_StartFinish" Member="StartFinishes" ThisKey="idCity" OtherKey="idCity" Type="StartFinish" />
-      <Association Name="Coutry_City" Member="Coutry" ThisKey="idCoutry" OtherKey="idCoutry" Type="Coutry" IsForeignKey="true" />
+      <Association Name="City_StartFinish" Member="StartFinishes" OtherKey="idCity" Type="StartFinish" />
+      <Association Name="Coutry_City" Member="Coutry" ThisKey="idCoutry" Type="Coutry" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Client" Member="Clients">
@@ -21,10 +21,10 @@
       <Column Name="notes" Type="System.String" DbType="NChar(500)" CanBeNull="true" />
       <Column Name="username" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="password" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Client_FirmRoute" Member="FirmRoutes" ThisKey="idClient" OtherKey="idClient" Type="FirmRoute" />
-      <Association Name="Client_GroupMember" Member="GroupMembers" ThisKey="idClient" OtherKey="idClient" Type="GroupMember" />
-      <Association Name="Client_LeaveAMessage" Member="LeaveAMessages" ThisKey="idClient" OtherKey="client" Type="LeaveAMessage" />
-      <Association Name="Client_Resource" Member="Resources" ThisKey="idClient" OtherKey="owner" Type="Resource" />
+      <Association Name="Client_FirmRoute" Member="FirmRoutes" OtherKey="idClient" Type="FirmRoute" />
+      <Association Name="Client_GroupMember" Member="GroupMembers" OtherKey="idClient" Type="GroupMember" />
+      <Association Name="Client_LeaveAMessage" Member="LeaveAMessages" OtherKey="client" Type="LeaveAMessage" />
+      <Association Name="Client_Resource" Member="Resources" OtherKey="owner" Type="Resource" />
     </Type>
   </Table>
   <Table Name="dbo.Coutry" Member="Coutries">
@@ -32,16 +32,16 @@
       <Column Name="idCoutry" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="idState" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Coutry_City" Member="Cities" ThisKey="idCoutry" OtherKey="idCoutry" Type="City" />
-      <Association Name="State_Coutry" Member="State" ThisKey="idState" OtherKey="idState" Type="State" IsForeignKey="true" />
+      <Association Name="Coutry_City" Member="Cities" OtherKey="idCoutry" Type="City" />
+      <Association Name="State_Coutry" Member="State" ThisKey="idState" Type="State" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.FirmRoute" Member="FirmRoutes">
     <Type Name="FirmRoute">
       <Column Name="idClient" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idRoute" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Client_FirmRoute" Member="Client" ThisKey="idClient" OtherKey="idClient" Type="Client" IsForeignKey="true" />
-      <Association Name="Route_FirmRoute" Member="Route" ThisKey="idRoute" OtherKey="idRoute" Type="Route" IsForeignKey="true" />
+      <Association Name="Client_FirmRoute" Member="Client" ThisKey="idClient" Type="Client" IsForeignKey="true" />
+      <Association Name="Route_FirmRoute" Member="Route" ThisKey="idRoute" Type="Route" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.[Group]" Member="Groups">
@@ -53,10 +53,10 @@
       <Column Name="totalCost" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="route" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="groupType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Group_GroupMember" Member="GroupMembers" ThisKey="idGroup" OtherKey="idGroup" Type="GroupMember" />
-      <Association Name="Group_LeaveAMessage" Member="LeaveAMessages" ThisKey="idGroup" OtherKey="idGroup" Type="LeaveAMessage" />
-      <Association Name="GroupType_Group" Member="GroupType1" ThisKey="groupType" OtherKey="idGroupType" Type="GroupType" IsForeignKey="true" />
-      <Association Name="Route_Group" Member="Route1" ThisKey="route" OtherKey="idRoute" Type="Route" IsForeignKey="true" />
+      <Association Name="Group_GroupMember" Member="GroupMembers" OtherKey="idGroup" Type="GroupMember" />
+      <Association Name="Group_LeaveAMessage" Member="LeaveAMessages" OtherKey="idGroup" Type="LeaveAMessage" />
+      <Association Name="GroupType_Group" Member="GroupType1" ThisKey="groupType" Type="GroupType" IsForeignKey="true" />
+      <Association Name="Route_Group" Member="Route1" ThisKey="route" Type="Route" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.GroupMember" Member="GroupMembers">
@@ -65,16 +65,16 @@
       <Column Name="idClient" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="resource" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="notesInGroup" Type="System.String" DbType="NChar(500)" CanBeNull="true" />
-      <Association Name="Group_GroupMember" Member="Group" ThisKey="idGroup" OtherKey="idGroup" Type="Group" IsForeignKey="true" />
-      <Association Name="Client_GroupMember" Member="Client" ThisKey="idClient" OtherKey="idClient" Type="Client" IsForeignKey="true" />
-      <Association Name="Resource_GroupMember" Member="Resource1" ThisKey="resource" OtherKey="idResource" Type="Resource" IsForeignKey="true" />
+      <Association Name="Group_GroupMember" Member="Group" ThisKey="idGroup" Type="Group" IsForeignKey="true" />
+      <Association Name="Client_GroupMember" Member="Client" ThisKey="idClient" Type="Client" IsForeignKey="true" />
+      <Association Name="Resource_GroupMember" Member="Resource1" ThisKey="resource" Type="Resource" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.GroupType" Member="GroupTypes">
     <Type Name="GroupType">
       <Column Name="idGroupType" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
-      <Association Name="GroupType_Group" Member="Groups" ThisKey="idGroupType" OtherKey="groupType" Type="Group" />
+      <Association Name="GroupType_Group" Member="Groups" OtherKey="groupType" Type="Group" />
     </Type>
   </Table>
   <Table Name="dbo.LeaveAMessage" Member="LeaveAMessages">
@@ -82,9 +82,9 @@
       <Column Name="idMessage" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="idGroup" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="client" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Group_LeaveAMessage" Member="Group" ThisKey="idGroup" OtherKey="idGroup" Type="Group" IsForeignKey="true" />
-      <Association Name="Client_LeaveAMessage" Member="Client1" ThisKey="client" OtherKey="idClient" Type="Client" IsForeignKey="true" />
-      <Association Name="Message_LeaveAMessage" Member="Message" ThisKey="idMessage" OtherKey="idMessage" Type="Message" IsForeignKey="true" />
+      <Association Name="Group_LeaveAMessage" Member="Group" ThisKey="idGroup" Type="Group" IsForeignKey="true" />
+      <Association Name="Client_LeaveAMessage" Member="Client1" ThisKey="client" Type="Client" IsForeignKey="true" />
+      <Association Name="Message_LeaveAMessage" Member="Message" ThisKey="idMessage" Type="Message" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Message" Member="Messages">
@@ -92,39 +92,28 @@
       <Column Name="time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="message" Member="message1" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="idMessage" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Association Name="Message_LeaveAMessage" Member="LeaveAMessages" ThisKey="idMessage" OtherKey="idMessage" Type="LeaveAMessage" />
+      <Association Name="Message_LeaveAMessage" Member="LeaveAMessages" OtherKey="idMessage" Type="LeaveAMessage" />
     </Type>
   </Table>
   <Table Name="dbo.ResourceType" Member="ResourceTypes">
     <Type Name="ResourceType">
       <Column Name="idResourceType" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
-      <Association Name="ResourceType_Resource" Member="Resources" ThisKey="idResourceType" OtherKey="resourceType" Type="Resource" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Route" Member="Routes">
-    <Type Name="Route">
-      <Column Name="idRoute" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="path" Type="System.Data.Linq.Binary" DbType="Binary(500) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="routeType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Route_FirmRoute" Member="FirmRoute" ThisKey="idRoute" OtherKey="idRoute" Type="FirmRoute" Cardinality="One" />
-      <Association Name="Route_Group" Member="Groups" ThisKey="idRoute" OtherKey="route" Type="Group" />
-      <Association Name="Route_StartFinish" Member="StartFinishes" ThisKey="idRoute" OtherKey="idRoute" Type="StartFinish" />
-      <Association Name="RouteType_Route" Member="RouteType1" ThisKey="routeType" OtherKey="idRouteType" Type="RouteType" IsForeignKey="true" />
+      <Association Name="ResourceType_Resource" Member="Resources" OtherKey="resourceType" Type="Resource" />
     </Type>
   </Table>
   <Table Name="dbo.RouteType" Member="RouteTypes">
     <Type Name="RouteType">
       <Column Name="idRouteType" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="RouteType_Route" Member="Routes" ThisKey="idRouteType" OtherKey="routeType" Type="Route" />
+      <Association Name="RouteType_Route" Member="Routes" OtherKey="routeType" Type="Route" />
     </Type>
   </Table>
   <Table Name="dbo.State" Member="States">
     <Type Name="State">
       <Column Name="idState" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="State_Coutry" Member="Coutries" ThisKey="idState" OtherKey="idState" Type="Coutry" />
+      <Association Name="State_Coutry" Member="Coutries" OtherKey="idState" Type="Coutry" />
     </Type>
   </Table>
   <Table Name="dbo.Resource" Member="Resources">
@@ -137,9 +126,9 @@
       <Column Name="consumption" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="owner" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Resource_GroupMember" Member="GroupMembers" ThisKey="idResource" OtherKey="resource" Type="GroupMember" />
-      <Association Name="Client_Resource" Member="Client" ThisKey="owner" OtherKey="idClient" Type="Client" IsForeignKey="true" />
-      <Association Name="ResourceType_Resource" Member="ResourceType1" ThisKey="resourceType" OtherKey="idResourceType" Type="ResourceType" IsForeignKey="true" />
+      <Association Name="Resource_GroupMember" Member="GroupMembers" OtherKey="resource" Type="GroupMember" />
+      <Association Name="Client_Resource" Member="Client" ThisKey="owner" Type="Client" IsForeignKey="true" />
+      <Association Name="ResourceType_Resource" Member="ResourceType1" ThisKey="resourceType" Type="ResourceType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.StartFinish" Member="StartFinishes">
@@ -148,8 +137,20 @@
       <Column Name="idRoute" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="direction" Type="System.Boolean" DbType="Bit NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="address" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Association Name="City_StartFinish" Member="City" ThisKey="idCity" OtherKey="idCity" Type="City" IsForeignKey="true" />
-      <Association Name="Route_StartFinish" Member="Route" ThisKey="idRoute" OtherKey="idRoute" Type="Route" IsForeignKey="true" />
+      <Association Name="City_StartFinish" Member="City" ThisKey="idCity" Type="City" IsForeignKey="true" />
+      <Association Name="Route_StartFinish" Member="Route" ThisKey="idRoute" Type="Route" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Route" Member="Routes">
+    <Type Name="Route">
+      <Column Name="idRoute" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="path" Type="System.Data.Linq.Binary" DbType="Binary(500) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="routeType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Route_FirmRoute" Member="FirmRoute" OtherKey="idRoute" Type="FirmRoute" Cardinality="One" />
+      <Association Name="Route_Group" Member="Groups" OtherKey="route" Type="Group" />
+      <Association Name="Route_StartFinish" Member="StartFinishes" OtherKey="idRoute" Type="StartFinish" />
+      <Association Name="RouteType_Route" Member="RouteType1" ThisKey="routeType" Type="RouteType" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

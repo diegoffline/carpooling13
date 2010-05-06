@@ -47,8 +47,15 @@ namespace CarpoolingModel
         }
         #endregion
 
+        public Route() {
+            startingPoint = new Place();
+            destination = new Place();
+            type = new RouteType();
+            path = new Path();
+        }
         public Route(Place startingPoint) {
             this.startingPoint = startingPoint;
+            type = new RouteType();
         }
         public Route(Place startingPoint, Place destination) : this(startingPoint) {
             this.destination = destination;

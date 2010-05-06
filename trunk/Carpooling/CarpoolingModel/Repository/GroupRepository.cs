@@ -94,7 +94,7 @@ namespace CarpoolingModel {
             return listRouGroup;
         }
 
-        public List<Group> getGroupsByType(GroupType groupType) {
+        public List<Group> getGroupsByType(CarpoolingModel.Types.GroupType groupType) {
             List<Group> listTyGr = new List<Group>();
             var groups = db.Groups.Where(s => s.groupType == groupType.Id);
 
