@@ -1,16 +1,19 @@
 ﻿using System;
-namespace CarpoolingModel {
+namespace CarpoolingModel.Repository {
     interface IPlaceRepository {
-        System.Collections.Generic.List<Country> getAllCountriesOfState(Nation state);
-        System.Collections.Generic.List<Nation> getAllStates();
-        System.Collections.Generic.List<City> getAllTownsOfCountry(Country country);
-        City getCityById(int id);
-        City getCityByName(string name);
-        Country getCountryByCity(City city);
-        Country getCountryById(int idCountry);
-        System.Collections.Generic.List<Country> getCountryByName(string name);
-        Nation getStateByCountry(Country country);
-        Nation getStateById(int id);
-        System.Collections.Generic.List<Nation> getStateByName(string name);
+        void addPlace(CarpoolingModel.Place place);
+        System.Collections.Generic.List<CarpoolingModel.Country> getAllCountriesOfState(CarpoolingModel.Nation state);
+        System.Collections.Generic.List<CarpoolingModel.Nation> getAllStates();
+        System.Collections.Generic.List<CarpoolingModel.City> getAllTownsOfCountry(CarpoolingModel.Country country);
+        CarpoolingModel.City getCityById(int id);
+        System.Collections.Generic.List<CarpoolingModel.City> getCityByName(string name);
+        CarpoolingModel.Country getCountryByCity(CarpoolingModel.City city);
+        CarpoolingModel.Country getCountryById(int idCountry);
+        System.Collections.Generic.List<CarpoolingModel.Country> getCountryByName(string name);
+        CarpoolingModel.Place getPlace(int idRoute, bool direction);
+        CarpoolingModel.Nation getStateByCountry(CarpoolingModel.Country country);
+        CarpoolingModel.Nation getStateById(int id);
+        System.Collections.Generic.List<CarpoolingModel.Nation> getStateByName(string name);
+        void updatePlace(CarpoolingModel.Place place, CarpoolingModel.Route route);
     }
 }

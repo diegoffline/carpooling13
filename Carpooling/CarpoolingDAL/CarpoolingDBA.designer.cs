@@ -60,9 +60,6 @@ namespace CarpoolingDAL
     partial void InsertResourceType(ResourceType instance);
     partial void UpdateResourceType(ResourceType instance);
     partial void DeleteResourceType(ResourceType instance);
-    partial void InsertRoute(Route instance);
-    partial void UpdateRoute(Route instance);
-    partial void DeleteRoute(Route instance);
     partial void InsertRouteType(RouteType instance);
     partial void UpdateRouteType(RouteType instance);
     partial void DeleteRouteType(RouteType instance);
@@ -75,6 +72,9 @@ namespace CarpoolingDAL
     partial void InsertStartFinish(StartFinish instance);
     partial void UpdateStartFinish(StartFinish instance);
     partial void DeleteStartFinish(StartFinish instance);
+    partial void InsertRoute(Route instance);
+    partial void UpdateRoute(Route instance);
+    partial void DeleteRoute(Route instance);
     #endregion
 		
 		public CarpoolingDBADataContext() : 
@@ -187,14 +187,6 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		public System.Data.Linq.Table<Route> Routes
-		{
-			get
-			{
-				return this.GetTable<Route>();
-			}
-		}
-		
 		public System.Data.Linq.Table<RouteType> RouteTypes
 		{
 			get
@@ -224,6 +216,14 @@ namespace CarpoolingDAL
 			get
 			{
 				return this.GetTable<StartFinish>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Route> Routes
+		{
+			get
+			{
+				return this.GetTable<Route>();
 			}
 		}
 	}
@@ -351,7 +351,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="City_StartFinish", Storage="_StartFinishes", ThisKey="idCity", OtherKey="idCity")]
+		[Association(Name="City_StartFinish", Storage="_StartFinishes", OtherKey="idCity")]
 		public EntitySet<StartFinish> StartFinishes
 		{
 			get
@@ -364,7 +364,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Coutry_City", Storage="_Coutry", ThisKey="idCoutry", OtherKey="idCoutry", IsForeignKey=true)]
+		[Association(Name="Coutry_City", Storage="_Coutry", ThisKey="idCoutry", IsForeignKey=true)]
 		public Coutry Coutry
 		{
 			get
@@ -652,7 +652,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Client_FirmRoute", Storage="_FirmRoutes", ThisKey="idClient", OtherKey="idClient")]
+		[Association(Name="Client_FirmRoute", Storage="_FirmRoutes", OtherKey="idClient")]
 		public EntitySet<FirmRoute> FirmRoutes
 		{
 			get
@@ -665,7 +665,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Client_GroupMember", Storage="_GroupMembers", ThisKey="idClient", OtherKey="idClient")]
+		[Association(Name="Client_GroupMember", Storage="_GroupMembers", OtherKey="idClient")]
 		public EntitySet<GroupMember> GroupMembers
 		{
 			get
@@ -678,7 +678,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Client_LeaveAMessage", Storage="_LeaveAMessages", ThisKey="idClient", OtherKey="client")]
+		[Association(Name="Client_LeaveAMessage", Storage="_LeaveAMessages", OtherKey="client")]
 		public EntitySet<LeaveAMessage> LeaveAMessages
 		{
 			get
@@ -691,7 +691,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Client_Resource", Storage="_Resources", ThisKey="idClient", OtherKey="owner")]
+		[Association(Name="Client_Resource", Storage="_Resources", OtherKey="owner")]
 		public EntitySet<Resource> Resources
 		{
 			get
@@ -872,7 +872,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Coutry_City", Storage="_Cities", ThisKey="idCoutry", OtherKey="idCoutry")]
+		[Association(Name="Coutry_City", Storage="_Cities", OtherKey="idCoutry")]
 		public EntitySet<City> Cities
 		{
 			get
@@ -885,7 +885,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="State_Coutry", Storage="_State", ThisKey="idState", OtherKey="idState", IsForeignKey=true)]
+		[Association(Name="State_Coutry", Storage="_State", ThisKey="idState", IsForeignKey=true)]
 		public State State
 		{
 			get
@@ -1031,7 +1031,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Client_FirmRoute", Storage="_Client", ThisKey="idClient", OtherKey="idClient", IsForeignKey=true)]
+		[Association(Name="Client_FirmRoute", Storage="_Client", ThisKey="idClient", IsForeignKey=true)]
 		public Client Client
 		{
 			get
@@ -1065,7 +1065,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Route_FirmRoute", Storage="_Route", ThisKey="idRoute", OtherKey="idRoute", IsForeignKey=true)]
+		[Association(Name="Route_FirmRoute", Storage="_Route", ThisKey="idRoute", IsForeignKey=true)]
 		public Route Route
 		{
 			get
@@ -1325,7 +1325,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Group_GroupMember", Storage="_GroupMembers", ThisKey="idGroup", OtherKey="idGroup")]
+		[Association(Name="Group_GroupMember", Storage="_GroupMembers", OtherKey="idGroup")]
 		public EntitySet<GroupMember> GroupMembers
 		{
 			get
@@ -1338,7 +1338,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Group_LeaveAMessage", Storage="_LeaveAMessages", ThisKey="idGroup", OtherKey="idGroup")]
+		[Association(Name="Group_LeaveAMessage", Storage="_LeaveAMessages", OtherKey="idGroup")]
 		public EntitySet<LeaveAMessage> LeaveAMessages
 		{
 			get
@@ -1351,7 +1351,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="GroupType_Group", Storage="_GroupType1", ThisKey="groupType", OtherKey="idGroupType", IsForeignKey=true)]
+		[Association(Name="GroupType_Group", Storage="_GroupType1", ThisKey="groupType", IsForeignKey=true)]
 		public GroupType GroupType1
 		{
 			get
@@ -1385,7 +1385,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Route_Group", Storage="_Route1", ThisKey="route", OtherKey="idRoute", IsForeignKey=true)]
+		[Association(Name="Route_Group", Storage="_Route1", ThisKey="route", IsForeignKey=true)]
 		public Route Route1
 		{
 			get
@@ -1598,7 +1598,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Group_GroupMember", Storage="_Group", ThisKey="idGroup", OtherKey="idGroup", IsForeignKey=true)]
+		[Association(Name="Group_GroupMember", Storage="_Group", ThisKey="idGroup", IsForeignKey=true)]
 		public Group Group
 		{
 			get
@@ -1632,7 +1632,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Client_GroupMember", Storage="_Client", ThisKey="idClient", OtherKey="idClient", IsForeignKey=true)]
+		[Association(Name="Client_GroupMember", Storage="_Client", ThisKey="idClient", IsForeignKey=true)]
 		public Client Client
 		{
 			get
@@ -1666,7 +1666,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Resource_GroupMember", Storage="_Resource1", ThisKey="resource", OtherKey="idResource", IsForeignKey=true)]
+		[Association(Name="Resource_GroupMember", Storage="_Resource1", ThisKey="resource", IsForeignKey=true)]
 		public Resource Resource1
 		{
 			get
@@ -1789,7 +1789,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="GroupType_Group", Storage="_Groups", ThisKey="idGroupType", OtherKey="groupType")]
+		[Association(Name="GroupType_Group", Storage="_Groups", OtherKey="groupType")]
 		public EntitySet<Group> Groups
 		{
 			get
@@ -1945,7 +1945,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Group_LeaveAMessage", Storage="_Group", ThisKey="idGroup", OtherKey="idGroup", IsForeignKey=true)]
+		[Association(Name="Group_LeaveAMessage", Storage="_Group", ThisKey="idGroup", IsForeignKey=true)]
 		public Group Group
 		{
 			get
@@ -1979,7 +1979,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Client_LeaveAMessage", Storage="_Client1", ThisKey="client", OtherKey="idClient", IsForeignKey=true)]
+		[Association(Name="Client_LeaveAMessage", Storage="_Client1", ThisKey="client", IsForeignKey=true)]
 		public Client Client1
 		{
 			get
@@ -2013,7 +2013,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Message_LeaveAMessage", Storage="_Message", ThisKey="idMessage", OtherKey="idMessage", IsForeignKey=true)]
+		[Association(Name="Message_LeaveAMessage", Storage="_Message", ThisKey="idMessage", IsForeignKey=true)]
 		public Message Message
 		{
 			get
@@ -2160,7 +2160,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Message_LeaveAMessage", Storage="_LeaveAMessages", ThisKey="idMessage", OtherKey="idMessage")]
+		[Association(Name="Message_LeaveAMessage", Storage="_LeaveAMessages", OtherKey="idMessage")]
 		public EntitySet<LeaveAMessage> LeaveAMessages
 		{
 			get
@@ -2274,7 +2274,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="ResourceType_Resource", Storage="_Resources", ThisKey="idResourceType", OtherKey="resourceType")]
+		[Association(Name="ResourceType_Resource", Storage="_Resources", OtherKey="resourceType")]
 		public EntitySet<Resource> Resources
 		{
 			get
@@ -2317,245 +2317,6 @@ namespace CarpoolingDAL
 		{
 			this.SendPropertyChanging();
 			entity.ResourceType1 = null;
-		}
-	}
-	
-	[Table(Name="dbo.Route")]
-	public partial class Route : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _idRoute;
-		
-		private System.Data.Linq.Binary _path;
-		
-		private int _routeType;
-		
-		private EntityRef<FirmRoute> _FirmRoute;
-		
-		private EntitySet<Group> _Groups;
-		
-		private EntitySet<StartFinish> _StartFinishes;
-		
-		private EntityRef<RouteType> _RouteType1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidRouteChanging(int value);
-    partial void OnidRouteChanged();
-    partial void OnpathChanging(System.Data.Linq.Binary value);
-    partial void OnpathChanged();
-    partial void OnrouteTypeChanging(int value);
-    partial void OnrouteTypeChanged();
-    #endregion
-		
-		public Route()
-		{
-			this._FirmRoute = default(EntityRef<FirmRoute>);
-			this._Groups = new EntitySet<Group>(new Action<Group>(this.attach_Groups), new Action<Group>(this.detach_Groups));
-			this._StartFinishes = new EntitySet<StartFinish>(new Action<StartFinish>(this.attach_StartFinishes), new Action<StartFinish>(this.detach_StartFinishes));
-			this._RouteType1 = default(EntityRef<RouteType>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_idRoute", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idRoute
-		{
-			get
-			{
-				return this._idRoute;
-			}
-			set
-			{
-				if ((this._idRoute != value))
-				{
-					this.OnidRouteChanging(value);
-					this.SendPropertyChanging();
-					this._idRoute = value;
-					this.SendPropertyChanged("idRoute");
-					this.OnidRouteChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_path", DbType="Binary(500) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary path
-		{
-			get
-			{
-				return this._path;
-			}
-			set
-			{
-				if ((this._path != value))
-				{
-					this.OnpathChanging(value);
-					this.SendPropertyChanging();
-					this._path = value;
-					this.SendPropertyChanged("path");
-					this.OnpathChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_routeType", DbType="Int NOT NULL")]
-		public int routeType
-		{
-			get
-			{
-				return this._routeType;
-			}
-			set
-			{
-				if ((this._routeType != value))
-				{
-					if (this._RouteType1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnrouteTypeChanging(value);
-					this.SendPropertyChanging();
-					this._routeType = value;
-					this.SendPropertyChanged("routeType");
-					this.OnrouteTypeChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Route_FirmRoute", Storage="_FirmRoute", ThisKey="idRoute", OtherKey="idRoute", IsUnique=true, IsForeignKey=false)]
-		public FirmRoute FirmRoute
-		{
-			get
-			{
-				return this._FirmRoute.Entity;
-			}
-			set
-			{
-				FirmRoute previousValue = this._FirmRoute.Entity;
-				if (((previousValue != value) 
-							|| (this._FirmRoute.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._FirmRoute.Entity = null;
-						previousValue.Route = null;
-					}
-					this._FirmRoute.Entity = value;
-					if ((value != null))
-					{
-						value.Route = this;
-					}
-					this.SendPropertyChanged("FirmRoute");
-				}
-			}
-		}
-		
-		[Association(Name="Route_Group", Storage="_Groups", ThisKey="idRoute", OtherKey="route")]
-		public EntitySet<Group> Groups
-		{
-			get
-			{
-				return this._Groups;
-			}
-			set
-			{
-				this._Groups.Assign(value);
-			}
-		}
-		
-		[Association(Name="Route_StartFinish", Storage="_StartFinishes", ThisKey="idRoute", OtherKey="idRoute")]
-		public EntitySet<StartFinish> StartFinishes
-		{
-			get
-			{
-				return this._StartFinishes;
-			}
-			set
-			{
-				this._StartFinishes.Assign(value);
-			}
-		}
-		
-		[Association(Name="RouteType_Route", Storage="_RouteType1", ThisKey="routeType", OtherKey="idRouteType", IsForeignKey=true)]
-		public RouteType RouteType1
-		{
-			get
-			{
-				return this._RouteType1.Entity;
-			}
-			set
-			{
-				RouteType previousValue = this._RouteType1.Entity;
-				if (((previousValue != value) 
-							|| (this._RouteType1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._RouteType1.Entity = null;
-						previousValue.Routes.Remove(this);
-					}
-					this._RouteType1.Entity = value;
-					if ((value != null))
-					{
-						value.Routes.Add(this);
-						this._routeType = value.idRouteType;
-					}
-					else
-					{
-						this._routeType = default(int);
-					}
-					this.SendPropertyChanged("RouteType1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Groups(Group entity)
-		{
-			this.SendPropertyChanging();
-			entity.Route1 = this;
-		}
-		
-		private void detach_Groups(Group entity)
-		{
-			this.SendPropertyChanging();
-			entity.Route1 = null;
-		}
-		
-		private void attach_StartFinishes(StartFinish entity)
-		{
-			this.SendPropertyChanging();
-			entity.Route = this;
-		}
-		
-		private void detach_StartFinishes(StartFinish entity)
-		{
-			this.SendPropertyChanging();
-			entity.Route = null;
 		}
 	}
 	
@@ -2627,7 +2388,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="RouteType_Route", Storage="_Routes", ThisKey="idRouteType", OtherKey="routeType")]
+		[Association(Name="RouteType_Route", Storage="_Routes", OtherKey="routeType")]
 		public EntitySet<Route> Routes
 		{
 			get
@@ -2741,7 +2502,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="State_Coutry", Storage="_Coutries", ThisKey="idState", OtherKey="idState")]
+		[Association(Name="State_Coutry", Storage="_Coutries", OtherKey="idState")]
 		public EntitySet<Coutry> Coutries
 		{
 			get
@@ -3013,7 +2774,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Resource_GroupMember", Storage="_GroupMembers", ThisKey="idResource", OtherKey="resource")]
+		[Association(Name="Resource_GroupMember", Storage="_GroupMembers", OtherKey="resource")]
 		public EntitySet<GroupMember> GroupMembers
 		{
 			get
@@ -3026,7 +2787,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Client_Resource", Storage="_Client", ThisKey="owner", OtherKey="idClient", IsForeignKey=true)]
+		[Association(Name="Client_Resource", Storage="_Client", ThisKey="owner", IsForeignKey=true)]
 		public Client Client
 		{
 			get
@@ -3060,7 +2821,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="ResourceType_Resource", Storage="_ResourceType1", ThisKey="resourceType", OtherKey="idResourceType", IsForeignKey=true)]
+		[Association(Name="ResourceType_Resource", Storage="_ResourceType1", ThisKey="resourceType", IsForeignKey=true)]
 		public ResourceType ResourceType1
 		{
 			get
@@ -3254,7 +3015,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="City_StartFinish", Storage="_City", ThisKey="idCity", OtherKey="idCity", IsForeignKey=true)]
+		[Association(Name="City_StartFinish", Storage="_City", ThisKey="idCity", IsForeignKey=true)]
 		public City City
 		{
 			get
@@ -3288,7 +3049,7 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Route_StartFinish", Storage="_Route", ThisKey="idRoute", OtherKey="idRoute", IsForeignKey=true)]
+		[Association(Name="Route_StartFinish", Storage="_Route", ThisKey="idRoute", IsForeignKey=true)]
 		public Route Route
 		{
 			get
@@ -3340,6 +3101,269 @@ namespace CarpoolingDAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[Table(Name="dbo.Route")]
+	public partial class Route : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idRoute;
+		
+		private System.Data.Linq.Binary _path;
+		
+		private int _routeType;
+		
+		private string _name;
+		
+		private EntityRef<FirmRoute> _FirmRoute;
+		
+		private EntitySet<Group> _Groups;
+		
+		private EntitySet<StartFinish> _StartFinishes;
+		
+		private EntityRef<RouteType> _RouteType1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidRouteChanging(int value);
+    partial void OnidRouteChanged();
+    partial void OnpathChanging(System.Data.Linq.Binary value);
+    partial void OnpathChanged();
+    partial void OnrouteTypeChanging(int value);
+    partial void OnrouteTypeChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    #endregion
+		
+		public Route()
+		{
+			this._FirmRoute = default(EntityRef<FirmRoute>);
+			this._Groups = new EntitySet<Group>(new Action<Group>(this.attach_Groups), new Action<Group>(this.detach_Groups));
+			this._StartFinishes = new EntitySet<StartFinish>(new Action<StartFinish>(this.attach_StartFinishes), new Action<StartFinish>(this.detach_StartFinishes));
+			this._RouteType1 = default(EntityRef<RouteType>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_idRoute", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idRoute
+		{
+			get
+			{
+				return this._idRoute;
+			}
+			set
+			{
+				if ((this._idRoute != value))
+				{
+					this.OnidRouteChanging(value);
+					this.SendPropertyChanging();
+					this._idRoute = value;
+					this.SendPropertyChanged("idRoute");
+					this.OnidRouteChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_path", DbType="Binary(500) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary path
+		{
+			get
+			{
+				return this._path;
+			}
+			set
+			{
+				if ((this._path != value))
+				{
+					this.OnpathChanging(value);
+					this.SendPropertyChanging();
+					this._path = value;
+					this.SendPropertyChanged("path");
+					this.OnpathChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_routeType", DbType="Int NOT NULL")]
+		public int routeType
+		{
+			get
+			{
+				return this._routeType;
+			}
+			set
+			{
+				if ((this._routeType != value))
+				{
+					if (this._RouteType1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnrouteTypeChanging(value);
+					this.SendPropertyChanging();
+					this._routeType = value;
+					this.SendPropertyChanged("routeType");
+					this.OnrouteTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_name", DbType="NChar(100) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Route_FirmRoute", Storage="_FirmRoute", ThisKey="idRoute", IsUnique=true, IsForeignKey=false)]
+		public FirmRoute FirmRoute
+		{
+			get
+			{
+				return this._FirmRoute.Entity;
+			}
+			set
+			{
+				FirmRoute previousValue = this._FirmRoute.Entity;
+				if (((previousValue != value) 
+							|| (this._FirmRoute.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._FirmRoute.Entity = null;
+						previousValue.Route = null;
+					}
+					this._FirmRoute.Entity = value;
+					if ((value != null))
+					{
+						value.Route = this;
+					}
+					this.SendPropertyChanged("FirmRoute");
+				}
+			}
+		}
+		
+		[Association(Name="Route_Group", Storage="_Groups", OtherKey="route")]
+		public EntitySet<Group> Groups
+		{
+			get
+			{
+				return this._Groups;
+			}
+			set
+			{
+				this._Groups.Assign(value);
+			}
+		}
+		
+		[Association(Name="Route_StartFinish", Storage="_StartFinishes", OtherKey="idRoute")]
+		public EntitySet<StartFinish> StartFinishes
+		{
+			get
+			{
+				return this._StartFinishes;
+			}
+			set
+			{
+				this._StartFinishes.Assign(value);
+			}
+		}
+		
+		[Association(Name="RouteType_Route", Storage="_RouteType1", ThisKey="routeType", IsForeignKey=true)]
+		public RouteType RouteType1
+		{
+			get
+			{
+				return this._RouteType1.Entity;
+			}
+			set
+			{
+				RouteType previousValue = this._RouteType1.Entity;
+				if (((previousValue != value) 
+							|| (this._RouteType1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RouteType1.Entity = null;
+						previousValue.Routes.Remove(this);
+					}
+					this._RouteType1.Entity = value;
+					if ((value != null))
+					{
+						value.Routes.Add(this);
+						this._routeType = value.idRouteType;
+					}
+					else
+					{
+						this._routeType = default(int);
+					}
+					this.SendPropertyChanged("RouteType1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Groups(Group entity)
+		{
+			this.SendPropertyChanging();
+			entity.Route1 = this;
+		}
+		
+		private void detach_Groups(Group entity)
+		{
+			this.SendPropertyChanging();
+			entity.Route1 = null;
+		}
+		
+		private void attach_StartFinishes(StartFinish entity)
+		{
+			this.SendPropertyChanging();
+			entity.Route = this;
+		}
+		
+		private void detach_StartFinishes(StartFinish entity)
+		{
+			this.SendPropertyChanging();
+			entity.Route = null;
 		}
 	}
 }

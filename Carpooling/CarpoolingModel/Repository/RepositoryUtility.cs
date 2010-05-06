@@ -67,5 +67,17 @@ namespace CarpoolingModel.Repository {
         internal static CarpoolingDAL.StartFinish createDALStartFinishFromPlace(Place place) {
             throw new NotImplementedException();
         }
+
+        internal static Nation createNationFromDALState(CarpoolingDAL.State st) {
+            throw new NotImplementedException();
+        }
+
+        internal static Country createCoutryFromDALCoutry(CarpoolingDAL.Coutry co) {
+            throw new NotImplementedException();
+        }
+
+        internal static City createCityFromDALCity(CarpoolingDAL.City city) {
+            throw new NotImplementedException();
+        }
     }
 }

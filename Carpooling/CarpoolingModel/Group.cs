@@ -66,6 +66,7 @@ namespace CarpoolingModel
             listClient = new List<GroupMember>();
             listMessage = new List<Message>();
             listResource = new List<Resource>();
+            type = new GroupType();
         }
         public Group(Route route, DateTime startTime) : this(){
             this.route = route;

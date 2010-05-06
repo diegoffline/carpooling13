@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Text;
+using CarpoolingDAL;
 
-namespace CarpoolingModel {
-    public class PlaceRepository : CarpoolingModel.IPlaceRepository {
+
+namespace CarpoolingModel.Repository {
+    public class PlaceRepository : CarpoolingModel.Repository.IPlaceRepository{
+
         private static PlaceRepository instanca = null;
-
+        private static CarpoolingDBADataContext db = new CarpoolingDBADataContext();
         private PlaceRepository() {
 
         }
@@ -18,46 +22,160 @@ namespace CarpoolingModel {
         }
 
         public Nation getStateByCountry(Country country) {
-            throw new System.NotImplementedException();
+            CarpoolingDAL.Coutry co = new CarpoolingDAL.Coutry();
+            CarpoolingDAL.State st = new CarpoolingDAL.State();
+            try {
+                var query = db.Coutries.Where(o => o.idCoutry == country.Id).First();
+                co = query as CarpoolingDAL.Coutry;
+                var query2 = db.States.Where(o => o.idState == co.idCoutry).First();
+                st = query2 as CarpoolingDAL.State;
+            } catch (Exception) {
+                st = null;
+            }
+
+            return RepositoryUtility.createNationFromDALState(st);
         }
 
         public Country getCountryByCity(City city) {
-            throw new System.NotImplementedException();
+            CarpoolingDAL.City ci = new CarpoolingDAL.City();
+            CarpoolingDAL.Coutry co = new CarpoolingDAL.Coutry();
+            try {
+                var query = db.Cities.Where(o => o.idCity == city.Id).First();
+                ci = query as CarpoolingDAL.City;
+                var query2 = db.Coutries.Where(o => o.idCoutry == ci.idCoutry).First();
+                co = query2 as CarpoolingDAL.Coutry;
+            } catch (Exception) {
+                co = null;
+            }
+
+            return RepositoryUtility.createCoutryFromDALCoutry(co);
         }
 
         public List<Country> getAllCountriesOfState(Nation state) {
-            throw new System.NotImplementedException();
+            List<Country> listCo = new List<Country>();
+            var coutries = db.Coutries.Where(s => s.idState == state.Id);
+
+            foreach (CarpoolingDAL.Coutry mem in coutries) {
+                listCo.Add(RepositoryUtility.createCoutryFromDALCoutry(mem as CarpoolingDAL.Coutry));
+            }
+            return listCo;
         }
 
         public List<Nation> getAllStates() {
-            throw new System.NotImplementedException();
+            List<Nation> allNations = new List<Nation>();
+            foreach (CarpoolingDAL.State o in db.States) {
+                allNations.Add(RepositoryUtility.createNationFromDALState(o));
+            }
+            return allNations;
         }
 
         public List<City> getAllTownsOfCountry(Country country) {
-            throw new System.NotImplementedException();
+            List<City> listCity = new List<City>();
+            var cities = db.Cities.Where(s => s.idCoutry == country.Id);
+
+            foreach (CarpoolingDAL.City mem in cities) {
+                listCity.Add(RepositoryUtility.createCityFromDALCity(mem as CarpoolingDAL.City));
+            }
+            return listCity;
         }
 
         public Nation getStateById(int id) {
-            throw new System.NotImplementedException();
+            CarpoolingDAL.State st = new CarpoolingDAL.State();
+            try {
+                var query = db.States.Where(o => o.idState == id).First();
+                st = query as CarpoolingDAL.State;
+            } catch (Exception) {
+                st = null;
+            }
+
+            return RepositoryUtility.createNationFromDALState(st);
         }
 
         public Country getCountryById(int idCountry) {
-            throw new System.NotImplementedException();
+            CarpoolingDAL.Coutry co = new CarpoolingDAL.Coutry();
+            try {
+                var query = db.Coutries.Where(o => o.idCoutry == idCountry).First();
+                co = query as CarpoolingDAL.Coutry;
+            } catch (Exception) {
+                co = null;
+            }
+
+            return RepositoryUtility.createCoutryFromDALCoutry(co);
         }
 
         public List<Country> getCountryByName(string name) {
-            throw new System.NotImplementedException();
+            List<Country> listCo = new List<Country>();
+            var coutries = db.Coutries.Where(s => s.name == name);
+
+            foreach (CarpoolingDAL.Coutry mem in coutries) {
+                listCo.Add(RepositoryUtility.createCoutryFromDALCoutry(mem as CarpoolingDAL.Coutry));
+            }
+            return listCo;
         }
 
         public List<Nation> getStateByName(string name) {
-            throw new System.NotImplementedException();
+            List<Nation> listSt = new List<Nation>();
+            var states = db.States.Where(s => s.name == name);
+
+            foreach (CarpoolingDAL.State mem in states) {
+                listSt.Add(RepositoryUtility.createNationFromDALState(mem as CarpoolingDAL.State));
+            }
+            return listSt;
         }
 
         public City getCityById(int id) {
-            throw new System.NotImplementedException();
+            CarpoolingDAL.City ci = new CarpoolingDAL.City();
+            try {
+                var query = db.Cities.Where(o => o.idCity == id).First();
+                ci = query as CarpoolingDAL.City;
+            } catch (Exception) {
+                ci = null;
+            }
+
+            return RepositoryUtility.createCityFromDALCity(ci);
         }
 
-        public City getCityByName(string name) {
+        public List<City> getCityByName(string name) {
+            List<City> listCi = new List<City>();
+            var cities = db.Cities.Where(s => s.name == name);
+
+            foreach (CarpoolingDAL.City mem in cities) {
+                listCi.Add(RepositoryUtility.createCityFromDALCity(mem as CarpoolingDAL.City));
+            }
+            return listCi;
+        }
+
+        public Place getPlace(int idRoute, bool direction)
+        {
+            CarpoolingDAL.StartFinish sf = new CarpoolingDAL.StartFinish();
+            try {
+                var query = db.StartFinishes.Where(o => o.idRoute == idRoute && o.direction == direction).First();
+                sf = query as CarpoolingDAL.StartFinish;
+                //TODO
+            } catch (Exception) {
+                sf = null;
+            }
+
+            return RepositoryUtility.createNationFromDALState(sf);
+        }
+
+        public void addPlace(Place place)
+        {
+            try {
+                db.StartFinishes.InsertOnSubmit(RepositoryUtility.createDALStartFinishFromPlace(place));
+                db.SubmitChanges();
+            } catch (Exception) {
+                //TODO saznaj koje su iznimke
+                //iznimka se generira ako se narusi bilo koje pravilo vezano uz primary key ili foreign key. Znači, iznimka se 
+                //generira ako se pokuša dodati osoba koja ima JMBAG koji koristi neka druga osoba, zatim ako se pod osoba.sifUloga 
+                //stavi neki broj kojeg nema u tablici Uloga, itd..
+                //return false;
+            }
+            //return true;
+        }
+
+        public void updatePlace(Place place, Route route)
+        {
             throw new System.NotImplementedException();
         }
 
