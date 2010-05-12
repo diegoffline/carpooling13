@@ -68,40 +68,32 @@ namespace CarpoolingModel
         } 
         #endregion
 
-        public List<Resource> getClientResources() {
-            throw new System.NotImplementedException();
-        }
-
         public void addResource(Resource resource) {
-            throw new System.NotImplementedException();
+            listResource.Add(resource);
         }
 
-        public List<Resource> getAllResource() {
-            throw new System.NotImplementedException();
+        public List<Resource> getAllResources() {
+            return listResource;
         }
 
         public void removeResource(Resource resource) {
-            throw new System.NotImplementedException();
-        }
-
-        public void updateResource(Resource resource) {
-            throw new System.NotImplementedException();
+            listResource.Remove(resource);
         }
 
         public void addFirmRoute(Route firmRoute) {
-            throw new System.NotImplementedException();
+            listFirmRoute.Add(firmRoute);
         }
 
         public void removeFirmRoute(Route route) {
-            throw new System.NotImplementedException();
+            listFirmRoute.Remove(route);
         }
 
         public List<Route> getAllFirmRoutes() {
-            throw new System.NotImplementedException();
+            return listFirmRoute;
         }
 
-        public Client() { 
-        
+        public Client() {
+            listFirmRoute = new List<Route>();
         }
         public Client(Client client) {
             this.id = client.id;
@@ -112,7 +104,7 @@ namespace CarpoolingModel
             this.notes = client.notes;
             this.username = client.username;
             this.password = client.password;
-            listResource = client.getClientResources();
+            listResource = client.getAllResources();
         }
         public Client(string username, string password) {
             this.username = username;

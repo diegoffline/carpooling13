@@ -12,7 +12,7 @@ namespace CarpoolingModel
         private string name;
         private DateTime age;
         private int seatNumber;
-        private float consumption;
+        private double consumption;
         private ResourceType type;
 
         #region Properties
@@ -40,7 +40,7 @@ namespace CarpoolingModel
             set { seatNumber = value; }
         }
 
-        public float Consumption
+        public double Consumption
         {
             get { return consumption; }
             set { consumption = value; }
@@ -52,6 +52,8 @@ namespace CarpoolingModel
             set { type = value; }
         } 
         #endregion
+
+        public Resource() { }
 
         public Resource(int seatNum, ResourceType type) {
             this.seatNumber = seatNum;

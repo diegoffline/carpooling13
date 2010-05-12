@@ -16,7 +16,7 @@ namespace CarpoolingModel
         private Route route;
         private Range startRange;
         private Range destinationRange;
-        private float totalCost;
+        private double totalCost;
         private string name;
         private GroupType type;
 
@@ -46,7 +46,7 @@ namespace CarpoolingModel
             set { destinationRange = value; }
         }
 
-        public float TotalCost {
+        public double TotalCost {
             get { return totalCost; }
             set { totalCost = value; }
         }
@@ -83,31 +83,41 @@ namespace CarpoolingModel
         }
 
         public void addGroupMember(GroupMember groupMember) {
-            throw new System.NotImplementedException();
+            listClient.Add(groupMember);
         }
 
         public void removeGroupMember(GroupMember groupMember) {
-            throw new System.NotImplementedException();
+            listClient.Remove(groupMember);
         }
 
         public void addMessage(Message message) {
-            throw new System.NotImplementedException();
+            listMessage.Add(message);
         }
 
         public List<Message> getMessages() {
-            throw new System.NotImplementedException();
+            return listMessage;
         }
 
         public List<GroupMember> getGroupMembers() {
-            throw new System.NotImplementedException();
+            return listClient;
         }
 
         public List<Resource> getResources() {
-            throw new System.NotImplementedException();
+            return listResource;
         }
 
         public List<Message> getMessagesByMember(Client member) {
-            throw new System.NotImplementedException();
+            List<Message> lm = new List<Message>();
+            foreach (Message item in listMessage) {
+                if (item.Member.Id == member.Id) {
+                    lm.Add(item);
+                }
+            }
+            return lm;
+        }
+
+        public GroupMember getGroupMemberById(int id) {
+            return listClient.Single(o => o.Id == id);
         }
     }
 }

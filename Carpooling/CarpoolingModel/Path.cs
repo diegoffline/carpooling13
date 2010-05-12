@@ -13,5 +13,15 @@ namespace CarpoolingModel
             get { return path; }
             set { path = value; }
         }
+        
+        public byte[] convertToBinary(){
+            byte[] result = new byte[PathDim.Length];
+            int i = 0;
+            foreach (char item in PathDim.ToCharArray()) {
+                result[i] = Convert.ToByte(item);
+                i++;
+            }
+            return result;
+        }
     }
 }

@@ -18,5 +18,12 @@ namespace CarpoolingModel.Types
             get { return name; }
             set { name = value; }
         }
+
+        public GroupType() {
+        }
+        public GroupType(int id, string name) {
+            this.id = id;
+            this.name = name;
+        }
     }
 }

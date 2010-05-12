@@ -1,7 +1,7 @@
 ﻿using System;
 namespace CarpoolingModel.Repository {
     interface IPlaceRepository {
-        void addPlace(CarpoolingModel.Place place);
+        void addPlace(CarpoolingModel.Place place, CarpoolingModel.Route route);
         System.Collections.Generic.List<CarpoolingModel.Country> getAllCountriesOfState(CarpoolingModel.Nation state);
         System.Collections.Generic.List<CarpoolingModel.Nation> getAllStates();
         System.Collections.Generic.List<CarpoolingModel.City> getAllTownsOfCountry(CarpoolingModel.Country country);

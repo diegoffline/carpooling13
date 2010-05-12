@@ -20,9 +20,9 @@ namespace CarpoolingModel.Repository {
             return instanca;
         }
 
-        public void addResource(Resource resource) {
+        public void addResource(Resource resource, Client client) {
             try {
-                db.Resources.InsertOnSubmit(RepositoryUtility.createDALResourceFromResource(resource));
+                db.Resources.InsertOnSubmit(RepositoryUtility.createDALResourceFromResource(resource, client));
                 db.SubmitChanges();
             } catch (Exception) {
                 //TODO saznaj koje su iznimke
@@ -72,7 +72,7 @@ namespace CarpoolingModel.Repository {
             return listMemRes;
         }
 
-        public void addResourceType(ResourceType resourceType) {
+        public void addResourceType(CarpoolingModel.Types.ResourceType resourceType) {
             try {
                 db.ResourceTypes.InsertOnSubmit(RepositoryUtility.createDALResourceTyFromResourceTy(resourceType));
                 db.SubmitChanges();
@@ -86,8 +86,8 @@ namespace CarpoolingModel.Repository {
             //return true;
         }
 
-        public List<ResourceType> getAllResourceTypes() {
-            List<ResourceType> allTypes = new List<ResourceType>();
+        public List<CarpoolingModel.Types.ResourceType> getAllResourceTypes() {
+            List<CarpoolingModel.Types.ResourceType> allTypes = new List<CarpoolingModel.Types.ResourceType>();
             foreach (CarpoolingDAL.ResourceType o in db.ResourceTypes) {
                 allTypes.Add(RepositoryUtility.createResTyFromDALResTy(o));
             }
