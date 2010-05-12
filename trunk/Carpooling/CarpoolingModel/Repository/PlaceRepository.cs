@@ -148,21 +148,25 @@ namespace CarpoolingModel.Repository {
         public Place getPlace(int idRoute, bool direction)
         {
             CarpoolingDAL.StartFinish sf = new CarpoolingDAL.StartFinish();
+            Place p = new Place();
             try {
                 var query = db.StartFinishes.Where(o => o.idRoute == idRoute && o.direction == direction).First();
                 sf = query as CarpoolingDAL.StartFinish;
-                //TODO
+                p.Address = sf.address;
+                p.InOrOut = sf.direction;
+                p.City = getCityById(sf.idCity);
+                p.Country = getCountryByCity(p.City);
+                p.State = getStateByCountry(p.Country);
             } catch (Exception) {
-                sf = null;
+                p = null;
             }
-
-            return RepositoryUtility.createNationFromDALState(sf);
+            return p;
         }
 
-        public void addPlace(Place place)
+        public void addPlace(Place place, Route route)
         {
             try {
-                db.StartFinishes.InsertOnSubmit(RepositoryUtility.createDALStartFinishFromPlace(place));
+                db.StartFinishes.InsertOnSubmit(RepositoryUtility.createDALStartFinishFromPlace(place, route));
                 db.SubmitChanges();
             } catch (Exception) {
                 //TODO saznaj koje su iznimke
@@ -176,7 +180,18 @@ namespace CarpoolingModel.Repository {
 
         public void updatePlace(Place place, Route route)
         {
-            throw new System.NotImplementedException();
+            try {
+                RouteRepository rr = RouteRepository.getInstanca();
+                ResourceRepository rer = ResourceRepository.getInstanca();
+                CarpoolingDAL.StartFinish oldOne = db.StartFinishes.Single(o => o.idRoute == route.Id && o.direction == place.InOrOut);
+                oldOne.address = place.Address;
+                oldOne.idCity = place.City.Id;
+                db.SubmitChanges();
+            } catch (Exception) {
+                //return false;
+            }
+
+            //return true;
         }
 
     }

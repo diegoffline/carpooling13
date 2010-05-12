@@ -55,8 +55,10 @@
     <Compile Include="Country.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="GroupMember.cs" />
+    <Compile Include="MessageRepository.cs" />
     <Compile Include="Repository\GroupRepository.cs" />
     <Compile Include="Repository\IClientRepository.cs" />
+    <Compile Include="Repository\IGroupRepository.cs" />
     <Compile Include="Repository\IPlaceRepository.cs" />
     <Compile Include="Repository\IResourceRepository.cs" />
     <Compile Include="Repository\IRouteRepository.cs" />
@@ -64,7 +66,6 @@
     <Compile Include="Repository\ResourceRepository.cs" />
     <Compile Include="Types\ResourceType.cs" />
     <Compile Include="Types\GroupType.cs" />
-    <Compile Include="Repository\IGroupRepository.cs" />
     <Compile Include="ITravelCost.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Nation.cs" />

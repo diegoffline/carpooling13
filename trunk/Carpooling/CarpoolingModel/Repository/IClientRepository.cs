@@ -2,7 +2,6 @@
 namespace CarpoolingModel.Repository {
     interface IClientRepository {
         void addClient(CarpoolingModel.Client client);
-        void addGroupMember(CarpoolingModel.GroupMember groupMember);
         bool existClient(string clientUsername);
         System.Collections.Generic.List<CarpoolingModel.Client> getAllClients();
         CarpoolingModel.Client getClientByEmail(string email);

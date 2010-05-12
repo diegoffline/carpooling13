@@ -65,11 +65,11 @@ namespace CarpoolingModel.Repository {
                         rr.addFirmRoute(item, client);
                     }
                 }
-                foreach (Resource item in client.getAllResource()) {
+                foreach (Resource item in client.getAllResources()) {
                     if (rer.existResource(item.Id)) {
                         rer.updateResource(item);
                     } else {
-                        rer.addResource(item);
+                        rer.addResource(item, client);
                     }
                 }
                 db.SubmitChanges();
@@ -127,20 +127,6 @@ namespace CarpoolingModel.Repository {
                 listMem.Add(RepositoryUtility.createGroupMemberFromDALGroupMember(mem as CarpoolingDAL.GroupMember));
             }
             return listMem;
-        }
-
-        public void addGroupMember(GroupMember groupMember) {
-            try {
-                db.GroupMembers.InsertOnSubmit(RepositoryUtility.createDALGroupMemberFromGroupMember(groupMember));
-                db.SubmitChanges();
-            } catch (Exception) {
-                //TODO saznaj koje su iznimke
-                //iznimka se generira ako se narusi bilo koje pravilo vezano uz primary key ili foreign key. Znači, iznimka se 
-                //generira ako se pokuša dodati osoba koja ima JMBAG koji koristi neka druga osoba, zatim ako se pod osoba.sifUloga 
-                //stavi neki broj kojeg nema u tablici Uloga, itd..
-                //return false;
-            }
-            //return true;
         }
 
     }

@@ -9,7 +9,7 @@ namespace CarpoolingModel
     {
         int id;
         string name;
-        int postalNumer;
+        string postalNumer;
 
         #region Properties
         public int Id
@@ -24,7 +24,7 @@ namespace CarpoolingModel
             set { name = value; }
         }
 
-        public int PostalNumer
+        public string PostalNumer
         {
             get { return postalNumer; }
             set { postalNumer = value; }

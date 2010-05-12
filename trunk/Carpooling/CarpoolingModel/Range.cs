@@ -14,5 +14,8 @@ namespace CarpoolingModel
             set { range = value; }
         }
 
+        public Range(decimal range) {
+            this.range = range;
+        }
     }
 }

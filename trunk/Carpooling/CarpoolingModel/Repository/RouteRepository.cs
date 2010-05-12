@@ -23,8 +23,8 @@ namespace CarpoolingModel.Repository {
             try {
                 PlaceRepository pr = PlaceRepository.getInstanca();
                 db.Routes.InsertOnSubmit(RepositoryUtility.createDALRouteFromRoute(route));
-                pr.addPlace(route.StartingPoint);
-                pr.addPlace(route.Destination);
+                pr.addPlace(route.StartingPoint, route);
+                pr.addPlace(route.Destination,route);
                 db.SubmitChanges();
             } catch (Exception) {
                 //TODO saznaj koje su iznimke
@@ -71,13 +71,7 @@ namespace CarpoolingModel.Repository {
                 ResourceRepository rer = ResourceRepository.getInstanca();
                 CarpoolingDAL.Route oldOne = db.Routes.Single(o => o.idRoute == route.Id);
                 oldOne.name = route.Name;
-                byte[] result = new byte[route.Path.PathDim.Length];
-                int i = 0;
-                foreach (char item in route.Path.PathDim.ToCharArray()) {
-                    result[i] = Convert.ToByte(item);
-                    i++;
-                }
-                oldOne.path = result;
+                oldOne.path = route.Path.convertToBinary();
                 oldOne.routeType = route.Type.Id;
                 pr.updatePlace(route.StartingPoint, route);
                 pr.updatePlace(route.Destination, route);

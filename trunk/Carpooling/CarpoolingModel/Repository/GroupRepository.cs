@@ -6,9 +6,9 @@ using CarpoolingDAL;
 using CarpoolingModel.Types;
 using CarpoolingModel.Repository;
 
-namespace CarpoolingModel {
+namespace CarpoolingModel.Repository {
 
-    public class GroupRepository : CarpoolingModel.IGroupRepository {
+    public class GroupRepository : CarpoolingModel.Repository.IGroupRepository {
         private static GroupRepository instanca = null;
         private static CarpoolingDBADataContext db = new CarpoolingDBADataContext();
         private GroupRepository() {
@@ -23,6 +23,9 @@ namespace CarpoolingModel {
 
         public void addGroup(Group group) {
             try {
+                foreach (GroupMember item in group.getGroupMembers()) {
+                    addGroupMember(item, group);
+                }
                 db.Groups.InsertOnSubmit(RepositoryUtility.createDALGroupFromGroup(group));
                 db.SubmitChanges();
             } catch (Exception) {
@@ -35,6 +38,19 @@ namespace CarpoolingModel {
             //return true;
         }
 
+        public void addGroupMember(GroupMember groupMember, Group group) {
+            try {
+                db.GroupMembers.InsertOnSubmit(RepositoryUtility.createDALGroupMemberFromGroupMember(groupMember, group));
+                db.SubmitChanges();
+            } catch (Exception) {
+                //TODO saznaj koje su iznimke
+                //iznimka se generira ako se narusi bilo koje pravilo vezano uz primary key ili foreign key. Znači, iznimka se 
+                //generira ako se pokuša dodati osoba koja ima JMBAG koji koristi neka druga osoba, zatim ako se pod osoba.sifUloga 
+                //stavi neki broj kojeg nema u tablici Uloga, itd..
+                //return false;
+            }
+            //return true;
+        }
         public void removeGroup(Group group) {
             try {
                 CarpoolingDAL.Group g = db.Groups.Single(o => o.idGroup == group.Id);
@@ -114,6 +130,18 @@ namespace CarpoolingModel {
                 listSDGr.Add(RepositoryUtility.createGroupFromDALGroup(res as CarpoolingDAL.Group));
             }
             return listSDGr;
+        }
+
+        public CarpoolingModel.Types.GroupType getGroupType(int id) {
+            CarpoolingDAL.GroupType g = new CarpoolingDAL.GroupType();
+            try {
+                var query = db.GroupTypes.Where(o => o.idGroupType == id).First();
+                g = query as CarpoolingDAL.GroupType;
+            } catch (Exception) {
+                g = null;
+            }
+
+            return RepositoryUtility.createGroupTypeFromDALGType(g);
         }
     }
 }

@@ -42,9 +42,6 @@ namespace CarpoolingDAL
     partial void InsertFirmRoute(FirmRoute instance);
     partial void UpdateFirmRoute(FirmRoute instance);
     partial void DeleteFirmRoute(FirmRoute instance);
-    partial void InsertGroup(Group instance);
-    partial void UpdateGroup(Group instance);
-    partial void DeleteGroup(Group instance);
     partial void InsertGroupMember(GroupMember instance);
     partial void UpdateGroupMember(GroupMember instance);
     partial void DeleteGroupMember(GroupMember instance);
@@ -66,15 +63,18 @@ namespace CarpoolingDAL
     partial void InsertState(State instance);
     partial void UpdateState(State instance);
     partial void DeleteState(State instance);
-    partial void InsertResource(Resource instance);
-    partial void UpdateResource(Resource instance);
-    partial void DeleteResource(Resource instance);
     partial void InsertStartFinish(StartFinish instance);
     partial void UpdateStartFinish(StartFinish instance);
     partial void DeleteStartFinish(StartFinish instance);
     partial void InsertRoute(Route instance);
     partial void UpdateRoute(Route instance);
     partial void DeleteRoute(Route instance);
+    partial void InsertGroup(Group instance);
+    partial void UpdateGroup(Group instance);
+    partial void DeleteGroup(Group instance);
+    partial void InsertResource(Resource instance);
+    partial void UpdateResource(Resource instance);
+    partial void DeleteResource(Resource instance);
     #endregion
 		
 		public CarpoolingDBADataContext() : 
@@ -139,14 +139,6 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		public System.Data.Linq.Table<Group> Groups
-		{
-			get
-			{
-				return this.GetTable<Group>();
-			}
-		}
-		
 		public System.Data.Linq.Table<GroupMember> GroupMembers
 		{
 			get
@@ -203,14 +195,6 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		public System.Data.Linq.Table<Resource> Resources
-		{
-			get
-			{
-				return this.GetTable<Resource>();
-			}
-		}
-		
 		public System.Data.Linq.Table<StartFinish> StartFinishes
 		{
 			get
@@ -224,6 +208,22 @@ namespace CarpoolingDAL
 			get
 			{
 				return this.GetTable<Route>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Group> Groups
+		{
+			get
+			{
+				return this.GetTable<Group>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Resource> Resources
+		{
+			get
+			{
+				return this.GetTable<Resource>();
 			}
 		}
 	}
@@ -1120,350 +1120,6 @@ namespace CarpoolingDAL
 		}
 	}
 	
-	[Table(Name="dbo.[Group]")]
-	public partial class Group : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _idGroup;
-		
-		private System.DateTime _startTime;
-		
-		private System.Nullable<decimal> _startRange;
-		
-		private System.Nullable<decimal> _destinationRange;
-		
-		private System.Nullable<double> _totalCost;
-		
-		private int _route;
-		
-		private int _groupType;
-		
-		private EntitySet<GroupMember> _GroupMembers;
-		
-		private EntitySet<LeaveAMessage> _LeaveAMessages;
-		
-		private EntityRef<GroupType> _GroupType1;
-		
-		private EntityRef<Route> _Route1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidGroupChanging(int value);
-    partial void OnidGroupChanged();
-    partial void OnstartTimeChanging(System.DateTime value);
-    partial void OnstartTimeChanged();
-    partial void OnstartRangeChanging(System.Nullable<decimal> value);
-    partial void OnstartRangeChanged();
-    partial void OndestinationRangeChanging(System.Nullable<decimal> value);
-    partial void OndestinationRangeChanged();
-    partial void OntotalCostChanging(System.Nullable<double> value);
-    partial void OntotalCostChanged();
-    partial void OnrouteChanging(int value);
-    partial void OnrouteChanged();
-    partial void OngroupTypeChanging(int value);
-    partial void OngroupTypeChanged();
-    #endregion
-		
-		public Group()
-		{
-			this._GroupMembers = new EntitySet<GroupMember>(new Action<GroupMember>(this.attach_GroupMembers), new Action<GroupMember>(this.detach_GroupMembers));
-			this._LeaveAMessages = new EntitySet<LeaveAMessage>(new Action<LeaveAMessage>(this.attach_LeaveAMessages), new Action<LeaveAMessage>(this.detach_LeaveAMessages));
-			this._GroupType1 = default(EntityRef<GroupType>);
-			this._Route1 = default(EntityRef<Route>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_idGroup", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idGroup
-		{
-			get
-			{
-				return this._idGroup;
-			}
-			set
-			{
-				if ((this._idGroup != value))
-				{
-					this.OnidGroupChanging(value);
-					this.SendPropertyChanging();
-					this._idGroup = value;
-					this.SendPropertyChanged("idGroup");
-					this.OnidGroupChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_startTime", DbType="DateTime NOT NULL")]
-		public System.DateTime startTime
-		{
-			get
-			{
-				return this._startTime;
-			}
-			set
-			{
-				if ((this._startTime != value))
-				{
-					this.OnstartTimeChanging(value);
-					this.SendPropertyChanging();
-					this._startTime = value;
-					this.SendPropertyChanged("startTime");
-					this.OnstartTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_startRange", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> startRange
-		{
-			get
-			{
-				return this._startRange;
-			}
-			set
-			{
-				if ((this._startRange != value))
-				{
-					this.OnstartRangeChanging(value);
-					this.SendPropertyChanging();
-					this._startRange = value;
-					this.SendPropertyChanged("startRange");
-					this.OnstartRangeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_destinationRange", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> destinationRange
-		{
-			get
-			{
-				return this._destinationRange;
-			}
-			set
-			{
-				if ((this._destinationRange != value))
-				{
-					this.OndestinationRangeChanging(value);
-					this.SendPropertyChanging();
-					this._destinationRange = value;
-					this.SendPropertyChanged("destinationRange");
-					this.OndestinationRangeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_totalCost", DbType="Float")]
-		public System.Nullable<double> totalCost
-		{
-			get
-			{
-				return this._totalCost;
-			}
-			set
-			{
-				if ((this._totalCost != value))
-				{
-					this.OntotalCostChanging(value);
-					this.SendPropertyChanging();
-					this._totalCost = value;
-					this.SendPropertyChanged("totalCost");
-					this.OntotalCostChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_route", DbType="Int NOT NULL")]
-		public int route
-		{
-			get
-			{
-				return this._route;
-			}
-			set
-			{
-				if ((this._route != value))
-				{
-					if (this._Route1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnrouteChanging(value);
-					this.SendPropertyChanging();
-					this._route = value;
-					this.SendPropertyChanged("route");
-					this.OnrouteChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_groupType", DbType="Int NOT NULL")]
-		public int groupType
-		{
-			get
-			{
-				return this._groupType;
-			}
-			set
-			{
-				if ((this._groupType != value))
-				{
-					if (this._GroupType1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OngroupTypeChanging(value);
-					this.SendPropertyChanging();
-					this._groupType = value;
-					this.SendPropertyChanged("groupType");
-					this.OngroupTypeChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Group_GroupMember", Storage="_GroupMembers", OtherKey="idGroup")]
-		public EntitySet<GroupMember> GroupMembers
-		{
-			get
-			{
-				return this._GroupMembers;
-			}
-			set
-			{
-				this._GroupMembers.Assign(value);
-			}
-		}
-		
-		[Association(Name="Group_LeaveAMessage", Storage="_LeaveAMessages", OtherKey="idGroup")]
-		public EntitySet<LeaveAMessage> LeaveAMessages
-		{
-			get
-			{
-				return this._LeaveAMessages;
-			}
-			set
-			{
-				this._LeaveAMessages.Assign(value);
-			}
-		}
-		
-		[Association(Name="GroupType_Group", Storage="_GroupType1", ThisKey="groupType", IsForeignKey=true)]
-		public GroupType GroupType1
-		{
-			get
-			{
-				return this._GroupType1.Entity;
-			}
-			set
-			{
-				GroupType previousValue = this._GroupType1.Entity;
-				if (((previousValue != value) 
-							|| (this._GroupType1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._GroupType1.Entity = null;
-						previousValue.Groups.Remove(this);
-					}
-					this._GroupType1.Entity = value;
-					if ((value != null))
-					{
-						value.Groups.Add(this);
-						this._groupType = value.idGroupType;
-					}
-					else
-					{
-						this._groupType = default(int);
-					}
-					this.SendPropertyChanged("GroupType1");
-				}
-			}
-		}
-		
-		[Association(Name="Route_Group", Storage="_Route1", ThisKey="route", IsForeignKey=true)]
-		public Route Route1
-		{
-			get
-			{
-				return this._Route1.Entity;
-			}
-			set
-			{
-				Route previousValue = this._Route1.Entity;
-				if (((previousValue != value) 
-							|| (this._Route1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Route1.Entity = null;
-						previousValue.Groups.Remove(this);
-					}
-					this._Route1.Entity = value;
-					if ((value != null))
-					{
-						value.Groups.Add(this);
-						this._route = value.idRoute;
-					}
-					else
-					{
-						this._route = default(int);
-					}
-					this.SendPropertyChanged("Route1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_GroupMembers(GroupMember entity)
-		{
-			this.SendPropertyChanging();
-			entity.Group = this;
-		}
-		
-		private void detach_GroupMembers(GroupMember entity)
-		{
-			this.SendPropertyChanging();
-			entity.Group = null;
-		}
-		
-		private void attach_LeaveAMessages(LeaveAMessage entity)
-		{
-			this.SendPropertyChanging();
-			entity.Group = this;
-		}
-		
-		private void detach_LeaveAMessages(LeaveAMessage entity)
-		{
-			this.SendPropertyChanging();
-			entity.Group = null;
-		}
-	}
-	
 	[Table(Name="dbo.GroupMember")]
 	public partial class GroupMember : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1478,9 +1134,9 @@ namespace CarpoolingDAL
 		
 		private string _notesInGroup;
 		
-		private EntityRef<Group> _Group;
-		
 		private EntityRef<Client> _Client;
+		
+		private EntityRef<Group> _Group;
 		
 		private EntityRef<Resource> _Resource1;
 		
@@ -1500,8 +1156,8 @@ namespace CarpoolingDAL
 		
 		public GroupMember()
 		{
-			this._Group = default(EntityRef<Group>);
 			this._Client = default(EntityRef<Client>);
+			this._Group = default(EntityRef<Group>);
 			this._Resource1 = default(EntityRef<Resource>);
 			OnCreated();
 		}
@@ -1598,40 +1254,6 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Group_GroupMember", Storage="_Group", ThisKey="idGroup", IsForeignKey=true)]
-		public Group Group
-		{
-			get
-			{
-				return this._Group.Entity;
-			}
-			set
-			{
-				Group previousValue = this._Group.Entity;
-				if (((previousValue != value) 
-							|| (this._Group.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Group.Entity = null;
-						previousValue.GroupMembers.Remove(this);
-					}
-					this._Group.Entity = value;
-					if ((value != null))
-					{
-						value.GroupMembers.Add(this);
-						this._idGroup = value.idGroup;
-					}
-					else
-					{
-						this._idGroup = default(int);
-					}
-					this.SendPropertyChanged("Group");
-				}
-			}
-		}
-		
 		[Association(Name="Client_GroupMember", Storage="_Client", ThisKey="idClient", IsForeignKey=true)]
 		public Client Client
 		{
@@ -1662,6 +1284,40 @@ namespace CarpoolingDAL
 						this._idClient = default(int);
 					}
 					this.SendPropertyChanged("Client");
+				}
+			}
+		}
+		
+		[Association(Name="Group_GroupMember", Storage="_Group", ThisKey="idGroup", IsForeignKey=true)]
+		public Group Group
+		{
+			get
+			{
+				return this._Group.Entity;
+			}
+			set
+			{
+				Group previousValue = this._Group.Entity;
+				if (((previousValue != value) 
+							|| (this._Group.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Group.Entity = null;
+						previousValue.GroupMembers.Remove(this);
+					}
+					this._Group.Entity = value;
+					if ((value != null))
+					{
+						value.GroupMembers.Add(this);
+						this._idGroup = value.idGroup;
+					}
+					else
+					{
+						this._idGroup = default(int);
+					}
+					this.SendPropertyChanged("Group");
 				}
 			}
 		}
@@ -1847,11 +1503,11 @@ namespace CarpoolingDAL
 		
 		private int _client;
 		
-		private EntityRef<Group> _Group;
-		
 		private EntityRef<Client> _Client1;
 		
 		private EntityRef<Message> _Message;
+		
+		private EntityRef<Group> _Group;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1867,9 +1523,9 @@ namespace CarpoolingDAL
 		
 		public LeaveAMessage()
 		{
-			this._Group = default(EntityRef<Group>);
 			this._Client1 = default(EntityRef<Client>);
 			this._Message = default(EntityRef<Message>);
+			this._Group = default(EntityRef<Group>);
 			OnCreated();
 		}
 		
@@ -1945,40 +1601,6 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Group_LeaveAMessage", Storage="_Group", ThisKey="idGroup", IsForeignKey=true)]
-		public Group Group
-		{
-			get
-			{
-				return this._Group.Entity;
-			}
-			set
-			{
-				Group previousValue = this._Group.Entity;
-				if (((previousValue != value) 
-							|| (this._Group.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Group.Entity = null;
-						previousValue.LeaveAMessages.Remove(this);
-					}
-					this._Group.Entity = value;
-					if ((value != null))
-					{
-						value.LeaveAMessages.Add(this);
-						this._idGroup = value.idGroup;
-					}
-					else
-					{
-						this._idGroup = default(int);
-					}
-					this.SendPropertyChanged("Group");
-				}
-			}
-		}
-		
 		[Association(Name="Client_LeaveAMessage", Storage="_Client1", ThisKey="client", IsForeignKey=true)]
 		public Client Client1
 		{
@@ -2043,6 +1665,40 @@ namespace CarpoolingDAL
 						this._idMessage = default(int);
 					}
 					this.SendPropertyChanged("Message");
+				}
+			}
+		}
+		
+		[Association(Name="Group_LeaveAMessage", Storage="_Group", ThisKey="idGroup", IsForeignKey=true)]
+		public Group Group
+		{
+			get
+			{
+				return this._Group.Entity;
+			}
+			set
+			{
+				Group previousValue = this._Group.Entity;
+				if (((previousValue != value) 
+							|| (this._Group.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Group.Entity = null;
+						previousValue.LeaveAMessages.Remove(this);
+					}
+					this._Group.Entity = value;
+					if ((value != null))
+					{
+						value.LeaveAMessages.Add(this);
+						this._idGroup = value.idGroup;
+					}
+					else
+					{
+						this._idGroup = default(int);
+					}
+					this.SendPropertyChanged("Group");
 				}
 			}
 		}
@@ -2548,346 +2204,6 @@ namespace CarpoolingDAL
 		}
 	}
 	
-	[Table(Name="dbo.Resource")]
-	public partial class Resource : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _idResource;
-		
-		private System.Nullable<int> _resourceType;
-		
-		private string _name;
-		
-		private System.Nullable<System.DateTime> _age;
-		
-		private int _seatNumber;
-		
-		private double _consumption;
-		
-		private int _owner;
-		
-		private bool _active;
-		
-		private EntitySet<GroupMember> _GroupMembers;
-		
-		private EntityRef<Client> _Client;
-		
-		private EntityRef<ResourceType> _ResourceType1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidResourceChanging(int value);
-    partial void OnidResourceChanged();
-    partial void OnresourceTypeChanging(System.Nullable<int> value);
-    partial void OnresourceTypeChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OnageChanging(System.Nullable<System.DateTime> value);
-    partial void OnageChanged();
-    partial void OnseatNumberChanging(int value);
-    partial void OnseatNumberChanged();
-    partial void OnconsumptionChanging(double value);
-    partial void OnconsumptionChanged();
-    partial void OnownerChanging(int value);
-    partial void OnownerChanged();
-    partial void OnactiveChanging(bool value);
-    partial void OnactiveChanged();
-    #endregion
-		
-		public Resource()
-		{
-			this._GroupMembers = new EntitySet<GroupMember>(new Action<GroupMember>(this.attach_GroupMembers), new Action<GroupMember>(this.detach_GroupMembers));
-			this._Client = default(EntityRef<Client>);
-			this._ResourceType1 = default(EntityRef<ResourceType>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_idResource", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idResource
-		{
-			get
-			{
-				return this._idResource;
-			}
-			set
-			{
-				if ((this._idResource != value))
-				{
-					this.OnidResourceChanging(value);
-					this.SendPropertyChanging();
-					this._idResource = value;
-					this.SendPropertyChanged("idResource");
-					this.OnidResourceChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_resourceType", DbType="Int")]
-		public System.Nullable<int> resourceType
-		{
-			get
-			{
-				return this._resourceType;
-			}
-			set
-			{
-				if ((this._resourceType != value))
-				{
-					if (this._ResourceType1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnresourceTypeChanging(value);
-					this.SendPropertyChanging();
-					this._resourceType = value;
-					this.SendPropertyChanged("resourceType");
-					this.OnresourceTypeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_name", DbType="NChar(100)")]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_age", DbType="DateTime")]
-		public System.Nullable<System.DateTime> age
-		{
-			get
-			{
-				return this._age;
-			}
-			set
-			{
-				if ((this._age != value))
-				{
-					this.OnageChanging(value);
-					this.SendPropertyChanging();
-					this._age = value;
-					this.SendPropertyChanged("age");
-					this.OnageChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_seatNumber", DbType="Int NOT NULL")]
-		public int seatNumber
-		{
-			get
-			{
-				return this._seatNumber;
-			}
-			set
-			{
-				if ((this._seatNumber != value))
-				{
-					this.OnseatNumberChanging(value);
-					this.SendPropertyChanging();
-					this._seatNumber = value;
-					this.SendPropertyChanged("seatNumber");
-					this.OnseatNumberChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_consumption", DbType="Float NOT NULL")]
-		public double consumption
-		{
-			get
-			{
-				return this._consumption;
-			}
-			set
-			{
-				if ((this._consumption != value))
-				{
-					this.OnconsumptionChanging(value);
-					this.SendPropertyChanging();
-					this._consumption = value;
-					this.SendPropertyChanged("consumption");
-					this.OnconsumptionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_owner", DbType="Int NOT NULL")]
-		public int owner
-		{
-			get
-			{
-				return this._owner;
-			}
-			set
-			{
-				if ((this._owner != value))
-				{
-					if (this._Client.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnownerChanging(value);
-					this.SendPropertyChanging();
-					this._owner = value;
-					this.SendPropertyChanged("owner");
-					this.OnownerChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_active", DbType="Bit NOT NULL")]
-		public bool active
-		{
-			get
-			{
-				return this._active;
-			}
-			set
-			{
-				if ((this._active != value))
-				{
-					this.OnactiveChanging(value);
-					this.SendPropertyChanging();
-					this._active = value;
-					this.SendPropertyChanged("active");
-					this.OnactiveChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Resource_GroupMember", Storage="_GroupMembers", OtherKey="resource")]
-		public EntitySet<GroupMember> GroupMembers
-		{
-			get
-			{
-				return this._GroupMembers;
-			}
-			set
-			{
-				this._GroupMembers.Assign(value);
-			}
-		}
-		
-		[Association(Name="Client_Resource", Storage="_Client", ThisKey="owner", IsForeignKey=true)]
-		public Client Client
-		{
-			get
-			{
-				return this._Client.Entity;
-			}
-			set
-			{
-				Client previousValue = this._Client.Entity;
-				if (((previousValue != value) 
-							|| (this._Client.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Client.Entity = null;
-						previousValue.Resources.Remove(this);
-					}
-					this._Client.Entity = value;
-					if ((value != null))
-					{
-						value.Resources.Add(this);
-						this._owner = value.idClient;
-					}
-					else
-					{
-						this._owner = default(int);
-					}
-					this.SendPropertyChanged("Client");
-				}
-			}
-		}
-		
-		[Association(Name="ResourceType_Resource", Storage="_ResourceType1", ThisKey="resourceType", IsForeignKey=true)]
-		public ResourceType ResourceType1
-		{
-			get
-			{
-				return this._ResourceType1.Entity;
-			}
-			set
-			{
-				ResourceType previousValue = this._ResourceType1.Entity;
-				if (((previousValue != value) 
-							|| (this._ResourceType1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ResourceType1.Entity = null;
-						previousValue.Resources.Remove(this);
-					}
-					this._ResourceType1.Entity = value;
-					if ((value != null))
-					{
-						value.Resources.Add(this);
-						this._resourceType = value.idResourceType;
-					}
-					else
-					{
-						this._resourceType = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ResourceType1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_GroupMembers(GroupMember entity)
-		{
-			this.SendPropertyChanging();
-			entity.Resource1 = this;
-		}
-		
-		private void detach_GroupMembers(GroupMember entity)
-		{
-			this.SendPropertyChanging();
-			entity.Resource1 = null;
-		}
-	}
-	
 	[Table(Name="dbo.StartFinish")]
 	public partial class StartFinish : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3120,9 +2436,9 @@ namespace CarpoolingDAL
 		
 		private EntityRef<FirmRoute> _FirmRoute;
 		
-		private EntitySet<Group> _Groups;
-		
 		private EntitySet<StartFinish> _StartFinishes;
+		
+		private EntitySet<Group> _Groups;
 		
 		private EntityRef<RouteType> _RouteType1;
 		
@@ -3143,8 +2459,8 @@ namespace CarpoolingDAL
 		public Route()
 		{
 			this._FirmRoute = default(EntityRef<FirmRoute>);
-			this._Groups = new EntitySet<Group>(new Action<Group>(this.attach_Groups), new Action<Group>(this.detach_Groups));
 			this._StartFinishes = new EntitySet<StartFinish>(new Action<StartFinish>(this.attach_StartFinishes), new Action<StartFinish>(this.detach_StartFinishes));
+			this._Groups = new EntitySet<Group>(new Action<Group>(this.attach_Groups), new Action<Group>(this.detach_Groups));
 			this._RouteType1 = default(EntityRef<RouteType>);
 			OnCreated();
 		}
@@ -3262,19 +2578,6 @@ namespace CarpoolingDAL
 			}
 		}
 		
-		[Association(Name="Route_Group", Storage="_Groups", OtherKey="route")]
-		public EntitySet<Group> Groups
-		{
-			get
-			{
-				return this._Groups;
-			}
-			set
-			{
-				this._Groups.Assign(value);
-			}
-		}
-		
 		[Association(Name="Route_StartFinish", Storage="_StartFinishes", OtherKey="idRoute")]
 		public EntitySet<StartFinish> StartFinishes
 		{
@@ -3285,6 +2588,19 @@ namespace CarpoolingDAL
 			set
 			{
 				this._StartFinishes.Assign(value);
+			}
+		}
+		
+		[Association(Name="Route_Group", Storage="_Groups", OtherKey="route")]
+		public EntitySet<Group> Groups
+		{
+			get
+			{
+				return this._Groups;
+			}
+			set
+			{
+				this._Groups.Assign(value);
 			}
 		}
 		
@@ -3342,6 +2658,18 @@ namespace CarpoolingDAL
 			}
 		}
 		
+		private void attach_StartFinishes(StartFinish entity)
+		{
+			this.SendPropertyChanging();
+			entity.Route = this;
+		}
+		
+		private void detach_StartFinishes(StartFinish entity)
+		{
+			this.SendPropertyChanging();
+			entity.Route = null;
+		}
+		
 		private void attach_Groups(Group entity)
 		{
 			this.SendPropertyChanging();
@@ -3353,17 +2681,713 @@ namespace CarpoolingDAL
 			this.SendPropertyChanging();
 			entity.Route1 = null;
 		}
+	}
+	
+	[Table(Name="dbo.[Group]")]
+	public partial class Group : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		private void attach_StartFinishes(StartFinish entity)
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idGroup;
+		
+		private System.DateTime _startTime;
+		
+		private decimal _startRange;
+		
+		private decimal _destinationRange;
+		
+		private double _totalCost;
+		
+		private int _route;
+		
+		private int _groupType;
+		
+		private string _name;
+		
+		private EntitySet<GroupMember> _GroupMembers;
+		
+		private EntitySet<LeaveAMessage> _LeaveAMessages;
+		
+		private EntityRef<GroupType> _GroupType1;
+		
+		private EntityRef<Route> _Route1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidGroupChanging(int value);
+    partial void OnidGroupChanged();
+    partial void OnstartTimeChanging(System.DateTime value);
+    partial void OnstartTimeChanged();
+    partial void OnstartRangeChanging(decimal value);
+    partial void OnstartRangeChanged();
+    partial void OndestinationRangeChanging(decimal value);
+    partial void OndestinationRangeChanged();
+    partial void OntotalCostChanging(double value);
+    partial void OntotalCostChanged();
+    partial void OnrouteChanging(int value);
+    partial void OnrouteChanged();
+    partial void OngroupTypeChanging(int value);
+    partial void OngroupTypeChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    #endregion
+		
+		public Group()
 		{
-			this.SendPropertyChanging();
-			entity.Route = this;
+			this._GroupMembers = new EntitySet<GroupMember>(new Action<GroupMember>(this.attach_GroupMembers), new Action<GroupMember>(this.detach_GroupMembers));
+			this._LeaveAMessages = new EntitySet<LeaveAMessage>(new Action<LeaveAMessage>(this.attach_LeaveAMessages), new Action<LeaveAMessage>(this.detach_LeaveAMessages));
+			this._GroupType1 = default(EntityRef<GroupType>);
+			this._Route1 = default(EntityRef<Route>);
+			OnCreated();
 		}
 		
-		private void detach_StartFinishes(StartFinish entity)
+		[Column(Storage="_idGroup", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idGroup
+		{
+			get
+			{
+				return this._idGroup;
+			}
+			set
+			{
+				if ((this._idGroup != value))
+				{
+					this.OnidGroupChanging(value);
+					this.SendPropertyChanging();
+					this._idGroup = value;
+					this.SendPropertyChanged("idGroup");
+					this.OnidGroupChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_startTime", DbType="DateTime NOT NULL")]
+		public System.DateTime startTime
+		{
+			get
+			{
+				return this._startTime;
+			}
+			set
+			{
+				if ((this._startTime != value))
+				{
+					this.OnstartTimeChanging(value);
+					this.SendPropertyChanging();
+					this._startTime = value;
+					this.SendPropertyChanged("startTime");
+					this.OnstartTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_startRange", DbType="Decimal(18,0) NOT NULL")]
+		public decimal startRange
+		{
+			get
+			{
+				return this._startRange;
+			}
+			set
+			{
+				if ((this._startRange != value))
+				{
+					this.OnstartRangeChanging(value);
+					this.SendPropertyChanging();
+					this._startRange = value;
+					this.SendPropertyChanged("startRange");
+					this.OnstartRangeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_destinationRange", DbType="Decimal(18,0) NOT NULL")]
+		public decimal destinationRange
+		{
+			get
+			{
+				return this._destinationRange;
+			}
+			set
+			{
+				if ((this._destinationRange != value))
+				{
+					this.OndestinationRangeChanging(value);
+					this.SendPropertyChanging();
+					this._destinationRange = value;
+					this.SendPropertyChanged("destinationRange");
+					this.OndestinationRangeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_totalCost", DbType="Float NOT NULL")]
+		public double totalCost
+		{
+			get
+			{
+				return this._totalCost;
+			}
+			set
+			{
+				if ((this._totalCost != value))
+				{
+					this.OntotalCostChanging(value);
+					this.SendPropertyChanging();
+					this._totalCost = value;
+					this.SendPropertyChanged("totalCost");
+					this.OntotalCostChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_route", DbType="Int NOT NULL")]
+		public int route
+		{
+			get
+			{
+				return this._route;
+			}
+			set
+			{
+				if ((this._route != value))
+				{
+					if (this._Route1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnrouteChanging(value);
+					this.SendPropertyChanging();
+					this._route = value;
+					this.SendPropertyChanged("route");
+					this.OnrouteChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_groupType", DbType="Int NOT NULL")]
+		public int groupType
+		{
+			get
+			{
+				return this._groupType;
+			}
+			set
+			{
+				if ((this._groupType != value))
+				{
+					if (this._GroupType1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OngroupTypeChanging(value);
+					this.SendPropertyChanging();
+					this._groupType = value;
+					this.SendPropertyChanged("groupType");
+					this.OngroupTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_name", DbType="NChar(100) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Group_GroupMember", Storage="_GroupMembers", OtherKey="idGroup")]
+		public EntitySet<GroupMember> GroupMembers
+		{
+			get
+			{
+				return this._GroupMembers;
+			}
+			set
+			{
+				this._GroupMembers.Assign(value);
+			}
+		}
+		
+		[Association(Name="Group_LeaveAMessage", Storage="_LeaveAMessages", OtherKey="idGroup")]
+		public EntitySet<LeaveAMessage> LeaveAMessages
+		{
+			get
+			{
+				return this._LeaveAMessages;
+			}
+			set
+			{
+				this._LeaveAMessages.Assign(value);
+			}
+		}
+		
+		[Association(Name="GroupType_Group", Storage="_GroupType1", ThisKey="groupType", IsForeignKey=true)]
+		public GroupType GroupType1
+		{
+			get
+			{
+				return this._GroupType1.Entity;
+			}
+			set
+			{
+				GroupType previousValue = this._GroupType1.Entity;
+				if (((previousValue != value) 
+							|| (this._GroupType1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._GroupType1.Entity = null;
+						previousValue.Groups.Remove(this);
+					}
+					this._GroupType1.Entity = value;
+					if ((value != null))
+					{
+						value.Groups.Add(this);
+						this._groupType = value.idGroupType;
+					}
+					else
+					{
+						this._groupType = default(int);
+					}
+					this.SendPropertyChanged("GroupType1");
+				}
+			}
+		}
+		
+		[Association(Name="Route_Group", Storage="_Route1", ThisKey="route", IsForeignKey=true)]
+		public Route Route1
+		{
+			get
+			{
+				return this._Route1.Entity;
+			}
+			set
+			{
+				Route previousValue = this._Route1.Entity;
+				if (((previousValue != value) 
+							|| (this._Route1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Route1.Entity = null;
+						previousValue.Groups.Remove(this);
+					}
+					this._Route1.Entity = value;
+					if ((value != null))
+					{
+						value.Groups.Add(this);
+						this._route = value.idRoute;
+					}
+					else
+					{
+						this._route = default(int);
+					}
+					this.SendPropertyChanged("Route1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_GroupMembers(GroupMember entity)
 		{
 			this.SendPropertyChanging();
-			entity.Route = null;
+			entity.Group = this;
+		}
+		
+		private void detach_GroupMembers(GroupMember entity)
+		{
+			this.SendPropertyChanging();
+			entity.Group = null;
+		}
+		
+		private void attach_LeaveAMessages(LeaveAMessage entity)
+		{
+			this.SendPropertyChanging();
+			entity.Group = this;
+		}
+		
+		private void detach_LeaveAMessages(LeaveAMessage entity)
+		{
+			this.SendPropertyChanging();
+			entity.Group = null;
+		}
+	}
+	
+	[Table(Name="dbo.Resource")]
+	public partial class Resource : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idResource;
+		
+		private System.Nullable<int> _resourceType;
+		
+		private string _name;
+		
+		private System.DateTime _age;
+		
+		private int _seatNumber;
+		
+		private double _consumption;
+		
+		private int _owner;
+		
+		private bool _active;
+		
+		private EntitySet<GroupMember> _GroupMembers;
+		
+		private EntityRef<Client> _Client;
+		
+		private EntityRef<ResourceType> _ResourceType1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidResourceChanging(int value);
+    partial void OnidResourceChanged();
+    partial void OnresourceTypeChanging(System.Nullable<int> value);
+    partial void OnresourceTypeChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnageChanging(System.DateTime value);
+    partial void OnageChanged();
+    partial void OnseatNumberChanging(int value);
+    partial void OnseatNumberChanged();
+    partial void OnconsumptionChanging(double value);
+    partial void OnconsumptionChanged();
+    partial void OnownerChanging(int value);
+    partial void OnownerChanged();
+    partial void OnactiveChanging(bool value);
+    partial void OnactiveChanged();
+    #endregion
+		
+		public Resource()
+		{
+			this._GroupMembers = new EntitySet<GroupMember>(new Action<GroupMember>(this.attach_GroupMembers), new Action<GroupMember>(this.detach_GroupMembers));
+			this._Client = default(EntityRef<Client>);
+			this._ResourceType1 = default(EntityRef<ResourceType>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_idResource", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idResource
+		{
+			get
+			{
+				return this._idResource;
+			}
+			set
+			{
+				if ((this._idResource != value))
+				{
+					this.OnidResourceChanging(value);
+					this.SendPropertyChanging();
+					this._idResource = value;
+					this.SendPropertyChanged("idResource");
+					this.OnidResourceChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_resourceType", DbType="Int")]
+		public System.Nullable<int> resourceType
+		{
+			get
+			{
+				return this._resourceType;
+			}
+			set
+			{
+				if ((this._resourceType != value))
+				{
+					if (this._ResourceType1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnresourceTypeChanging(value);
+					this.SendPropertyChanging();
+					this._resourceType = value;
+					this.SendPropertyChanged("resourceType");
+					this.OnresourceTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_name", DbType="NChar(100)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_age", DbType="DateTime NOT NULL")]
+		public System.DateTime age
+		{
+			get
+			{
+				return this._age;
+			}
+			set
+			{
+				if ((this._age != value))
+				{
+					this.OnageChanging(value);
+					this.SendPropertyChanging();
+					this._age = value;
+					this.SendPropertyChanged("age");
+					this.OnageChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_seatNumber", DbType="Int NOT NULL")]
+		public int seatNumber
+		{
+			get
+			{
+				return this._seatNumber;
+			}
+			set
+			{
+				if ((this._seatNumber != value))
+				{
+					this.OnseatNumberChanging(value);
+					this.SendPropertyChanging();
+					this._seatNumber = value;
+					this.SendPropertyChanged("seatNumber");
+					this.OnseatNumberChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_consumption", DbType="Float NOT NULL")]
+		public double consumption
+		{
+			get
+			{
+				return this._consumption;
+			}
+			set
+			{
+				if ((this._consumption != value))
+				{
+					this.OnconsumptionChanging(value);
+					this.SendPropertyChanging();
+					this._consumption = value;
+					this.SendPropertyChanged("consumption");
+					this.OnconsumptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_owner", DbType="Int NOT NULL")]
+		public int owner
+		{
+			get
+			{
+				return this._owner;
+			}
+			set
+			{
+				if ((this._owner != value))
+				{
+					if (this._Client.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnownerChanging(value);
+					this.SendPropertyChanging();
+					this._owner = value;
+					this.SendPropertyChanged("owner");
+					this.OnownerChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_active", DbType="Bit NOT NULL")]
+		public bool active
+		{
+			get
+			{
+				return this._active;
+			}
+			set
+			{
+				if ((this._active != value))
+				{
+					this.OnactiveChanging(value);
+					this.SendPropertyChanging();
+					this._active = value;
+					this.SendPropertyChanged("active");
+					this.OnactiveChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Resource_GroupMember", Storage="_GroupMembers", OtherKey="resource")]
+		public EntitySet<GroupMember> GroupMembers
+		{
+			get
+			{
+				return this._GroupMembers;
+			}
+			set
+			{
+				this._GroupMembers.Assign(value);
+			}
+		}
+		
+		[Association(Name="Client_Resource", Storage="_Client", ThisKey="owner", IsForeignKey=true)]
+		public Client Client
+		{
+			get
+			{
+				return this._Client.Entity;
+			}
+			set
+			{
+				Client previousValue = this._Client.Entity;
+				if (((previousValue != value) 
+							|| (this._Client.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Client.Entity = null;
+						previousValue.Resources.Remove(this);
+					}
+					this._Client.Entity = value;
+					if ((value != null))
+					{
+						value.Resources.Add(this);
+						this._owner = value.idClient;
+					}
+					else
+					{
+						this._owner = default(int);
+					}
+					this.SendPropertyChanged("Client");
+				}
+			}
+		}
+		
+		[Association(Name="ResourceType_Resource", Storage="_ResourceType1", ThisKey="resourceType", IsForeignKey=true)]
+		public ResourceType ResourceType1
+		{
+			get
+			{
+				return this._ResourceType1.Entity;
+			}
+			set
+			{
+				ResourceType previousValue = this._ResourceType1.Entity;
+				if (((previousValue != value) 
+							|| (this._ResourceType1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ResourceType1.Entity = null;
+						previousValue.Resources.Remove(this);
+					}
+					this._ResourceType1.Entity = value;
+					if ((value != null))
+					{
+						value.Resources.Add(this);
+						this._resourceType = value.idResourceType;
+					}
+					else
+					{
+						this._resourceType = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ResourceType1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_GroupMembers(GroupMember entity)
+		{
+			this.SendPropertyChanging();
+			entity.Resource1 = this;
+		}
+		
+		private void detach_GroupMembers(GroupMember entity)
+		{
+			this.SendPropertyChanging();
+			entity.Resource1 = null;
 		}
 	}
 }
