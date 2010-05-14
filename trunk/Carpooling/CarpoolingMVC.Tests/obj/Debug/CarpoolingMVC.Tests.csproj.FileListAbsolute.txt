@@ -1,0 +1,12 @@
+F:\workspaceCSharp\carpooling13\Carpooling\CarpoolingMVC.Tests\bin\Debug\CarpoolingMVC.Tests.dll.config
+F:\workspaceCSharp\carpooling13\Carpooling\CarpoolingMVC.Tests\bin\Debug\CarpoolingMVC.Tests.dll
+F:\workspaceCSharp\carpooling13\Carpooling\CarpoolingMVC.Tests\bin\Debug\CarpoolingMVC.Tests.pdb
+F:\workspaceCSharp\carpooling13\Carpooling\CarpoolingMVC.Tests\bin\Debug\CarpoolingMVC.dll
+F:\workspaceCSharp\carpooling13\Carpooling\CarpoolingMVC.Tests\bin\Debug\CarpoolingMVC.pdb
+F:\workspaceCSharp\carpooling13\Carpooling\CarpoolingMVC.Tests\obj\Debug\ResolveAssemblyReference.cache
+F:\workspaceCSharp\carpooling13\Carpooling\CarpoolingMVC.Tests\obj\Debug\CarpoolingMVC.Tests.dll
+F:\workspaceCSharp\carpooling13\Carpooling\CarpoolingMVC.Tests\obj\Debug\CarpoolingMVC.Tests.pdb
+F:\workspaceCSharp\carpooling13\Carpooling\CarpoolingMVC.Tests\bin\Debug\CarpoolingDAL.dll
+F:\workspaceCSharp\carpooling13\Carpooling\CarpoolingMVC.Tests\bin\Debug\CarpoolingModel.dll
+F:\workspaceCSharp\carpooling13\Carpooling\CarpoolingMVC.Tests\bin\Debug\CarpoolingDAL.pdb
+F:\workspaceCSharp\carpooling13\Carpooling\CarpoolingMVC.Tests\bin\Debug\CarpoolingModel.pdb
