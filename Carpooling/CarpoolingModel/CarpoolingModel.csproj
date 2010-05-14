@@ -82,7 +82,7 @@
     <Compile Include="TravelCost.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagramModel.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CarpoolingDAL\CarpoolingDAL.csproj">

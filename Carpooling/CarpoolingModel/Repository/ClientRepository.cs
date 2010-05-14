@@ -6,7 +6,7 @@ using System.Text;
 using CarpoolingDAL;
 
 namespace CarpoolingModel.Repository {
-    class ClientRepository : CarpoolingModel.Repository.IClientRepository{
+    public class ClientRepository : CarpoolingModel.Repository.IClientRepository{
         private static ClientRepository instanca = null;
         private static CarpoolingDBADataContext db = new CarpoolingDBADataContext();
         private ClientRepository() {
